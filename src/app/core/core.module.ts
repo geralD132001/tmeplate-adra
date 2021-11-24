@@ -7,6 +7,10 @@ import {SidebarComponent} from "./main-page/sidebar/sidebar.component";
 import {RouterModule} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
 import {FormsModule} from "@angular/forms";
+import { MainPageUserComponent } from './main-page-user/main-page-user.component';
+import { HeaderunoComponent } from './main-page-user/headeruno/headeruno.component';
+import {FooterunoComponent} from './main-page-user/footeruno/footeruno.component'
+import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
 
 const BASE_MODULES = [
   CommonModule,
@@ -25,10 +29,17 @@ const CORE_COMPONENTS: any[] = [
 @NgModule({
   declarations: [
     ...CORE_COMPONENTS,
+    MainPageUserComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent,
+    HeaderunoComponent,
+    FooterunoComponent
   ],
-  imports: [
-    ...BASE_MODULES
-  ],
+    imports: [
+        ...BASE_MODULES,
+        NgbCollapseModule
+    ],
   exports: [],
   providers: []
 })

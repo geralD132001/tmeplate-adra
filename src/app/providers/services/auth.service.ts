@@ -77,6 +77,12 @@ export class AuthService {
     let datos = this.obtenerDatosToken(this.token);
     return datos != null && datos.user_name && datos.user_name.length > 0;
   }
+  hasRole(role: string): boolean {
+    if (this.usuario.roles.includes(role)) {
+      return true;
+    }
+    return false;
+  }
 
   logout(): void {
     this._token = null;

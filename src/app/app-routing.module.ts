@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {MainPageComponent} from "./core/main-page/main-page.component";
+import {MainPageUserComponent} from "./core/main-page-user/main-page-user.component"
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
+import {MainPageComponent} from "./core/main-page/main-page.component";
 
 const routes: Routes = [
   {
@@ -12,11 +13,6 @@ const routes: Routes = [
         path: '',
         component: DashboardComponent,
         pathMatch: 'full'
-      },
-      {
-        path: 'modulo',
-        loadChildren: () => import('./pages/modulo/modulo.module')
-          .then(m => m.ModuloModule)
       },
       {
         path: 'order',
@@ -31,7 +27,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: '**',
+    path: '',
     redirectTo: '',
     pathMatch: 'full'
   }

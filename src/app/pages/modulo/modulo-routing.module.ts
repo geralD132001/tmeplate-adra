@@ -8,6 +8,8 @@ const routes: Routes = [
     path: '',
     component: ModuloComponent,
     children: [
+
+
       {
         path: 'banks',
         loadChildren: () => import('src/app/pages/modulo/bancos/bancos.module')
