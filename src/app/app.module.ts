@@ -10,21 +10,25 @@ import {CommonModule} from "@angular/common";
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DashboardComponent
-  ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgbModule,
-    AppRoutingModule,
-    HttpClientModule,
-    CoreModule,
-  ],
-  providers: [], // Los servicios se ponen en providers
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        DashboardComponent
+    ],
+    imports: [
+        CommonModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModule,
+        AppRoutingModule,
+        HttpClientModule,
+        CoreModule,
+    ],
+    providers: [],
+    exports: [
+        AppComponent
+    ],
+    // Los servicios se ponen en providers
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

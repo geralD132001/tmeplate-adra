@@ -97,21 +97,20 @@
             </form>
           </div>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link nav-link-icon" target="_blank" data-toggle="tooltip" title="Like us on Facebook">
-            <i class="fa fa-facebook-official"></i>
-            <span class="nav-link-inner--text d-lg-none">Facebook</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-icon fa fa-facebook-official" target="_blank" data-toggle="tooltip" >
-            Iniciar sesion
-            <i routerLink="/users/login" class="fa fa-user" ></i>
-            <span class="nav-link-inner--text d-lg-none">Facebook</span>
-          </a>
-        </li>
       </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li *ngIf="!autorizado" class="nav-item" routerLinkActive="active">
+            <a class="btn btn-outline-success" routerLink="/users/login">Sign In</a>
+          </li>
+          <li *ngIf="autorizado" class="dropdown">
+            <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+              {{auth.usuario.username}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item bg-olive" href="#" (click)="logout()">Cerrar Sesión</a>
+            </div>
+          </li>
+        </ul>
     </div>
   </div>
 </nav>

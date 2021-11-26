@@ -11,6 +11,7 @@ import { MainPageUserComponent } from './main-page-user/main-page-user.component
 import { HeaderunoComponent } from './main-page-user/headeruno/headeruno.component';
 import {FooterunoComponent} from './main-page-user/footeruno/footeruno.component'
 import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
+import { CoreComponent } from './core.component';
 
 const BASE_MODULES = [
   CommonModule,
@@ -34,7 +35,8 @@ const CORE_COMPONENTS: any[] = [
     FooterComponent,
     SidebarComponent,
     HeaderunoComponent,
-    FooterunoComponent
+    FooterunoComponent,
+    CoreComponent
   ],
     imports: [
         ...BASE_MODULES,
