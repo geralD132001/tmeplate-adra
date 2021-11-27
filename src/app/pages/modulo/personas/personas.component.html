@@ -1,0 +1,39 @@
+<!-- Main content -->
+<section class="content-wrapper" >
+  <button type="button" class="btn btn-primary float-right mt-3 mb-3" (click)="openModal()" >Nueva</button>
+  <table class="table bg-white shadow p-3 mb-5 bg-success rounded table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido Paterno</th>
+      <th scope="col">Apellido Materno</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">N°Celular</th>
+      <th scope="col">DNI</th>
+      <th scope="col">Nacionalidad</th>
+      <th colspan="2" class="text-center">Opciones</th>
+    </tr>
+    </thead>
+    <tbody  *ngFor="let persona of personas">
+    <tr>
+      <td>{{persona.idPersona}}</td>
+      <td>{{persona.nombrePersona}}</td>
+      <td>{{persona.apellidoPaterno}}</td>
+      <td>{{persona.apellidoMaterno}}</td>
+      <td>{{persona.diDireccion}}</td>
+      <td>{{persona.numeroCelular}}</td>
+      <td>{{persona.cod_identidad}}</td>
+      <td>{{persona.tiNacionalidad}}</td>
+      <td class="text-center">
+        <button type="button" class="btn btn-warning" (click)="openModalEdit(persona)">Editar</button>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-danger" (click)="onDelete(persona)">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+<!-- /.content -->
+<!-- /.content-wrapper -->

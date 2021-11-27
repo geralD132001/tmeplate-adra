@@ -1,6 +1,5 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 
 export class EntityDataService<T> {
 
@@ -34,12 +33,5 @@ export class EntityDataService<T> {
   public delete$(id: string): Observable<any> {
     return this.httpClient.delete<any>(`${this.endPoint}/${id}/`);
   }
-  /*
-    private isNoAutorizado(e: any): boolean {
-      if(e.status === 401 || e.status === 403) {
-        this.router.navigate(['/login']);
-        return true;
-      }
-      return false;
-    }*/
+
 }

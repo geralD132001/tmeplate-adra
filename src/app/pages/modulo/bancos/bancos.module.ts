@@ -4,7 +4,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {FormBancosComponent} from "./form-bancos/form-bancos.component";
 import {BancosComponent} from "./bancos.component";
 import {BancosRoutingModule} from "./bancos-routing.module";
-import {BancoService} from "../../../providers/services/banco.service";
 
 
 @NgModule({
@@ -17,6 +16,6 @@ import {BancoService} from "../../../providers/services/banco.service";
     ReactiveFormsModule,
     BancosRoutingModule
   ],
-  providers: [BancoService],
+  providers: [],
 })
 export class BancosModule { }

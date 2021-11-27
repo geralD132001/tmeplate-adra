@@ -8,10 +8,10 @@ import {END_POINTS} from "../utils/end-point";
 @Injectable({
   providedIn: 'root'
 })
-export class SociaService  extends EntityDataService<IResponse>{
+export class PersonaService  extends EntityDataService<IResponse>{
 
   constructor(protected httpClient: HttpClient) {
-    super(httpClient, END_POINTS.api+END_POINTS.admin.employee);
+    super(httpClient, END_POINTS.api+END_POINTS.admin.persona);
   }
   /*
     private apiUrl: string = "http://localhost:8080/api/employee";

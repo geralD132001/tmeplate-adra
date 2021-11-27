@@ -4,7 +4,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {FormInformesComponent} from "./form-informes/form-informes.component";
 import {InformesComponent} from "./informes.component";
 import {InformesRoutingModule} from "./informes-routing.module";
-import {InformeService} from "../../../providers/services/informe.service";
 
 
 
@@ -18,6 +17,6 @@ import {InformeService} from "../../../providers/services/informe.service";
     ReactiveFormsModule,
     InformesRoutingModule
   ],
-  providers: [InformeService],
+  providers: [],
 })
 export class InformesModule { }

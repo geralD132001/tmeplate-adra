@@ -3,12 +3,9 @@ export const END_POINTS = {
   auth: {
     token: 'oauth/token',
   },
-  admin: {
-    employee: 'employee',
-    departament: 'departament',
+  admin:{
+    persona: 'persona',
+    banco: 'banco',
+
   },
-  reportes: {
-    capacitaciones: 'reportes/capacitaciones',
-    departament: 'departament',
-  }
 };

@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  focus: any ;
+  focus1: any ;
   usuario: any;
   formGroup: FormGroup;
   @Output()  emisor = new EventEmitter<string>();

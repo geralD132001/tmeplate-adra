@@ -40,9 +40,9 @@ const routes: Routes = [
           .then(m => m.SesionesModule),
       },
       {
-        path: 'partners',
-        loadChildren: () => import('src/app/pages/modulo/socias/socias.module')
-          .then(m => m.SociasModule),
+        path: 'persons',
+        loadChildren: () => import('src/app/pages/modulo/personas/personas.module')
+          .then(m => m.PersonasModule),
       },
       {
         path: 'suggestions',

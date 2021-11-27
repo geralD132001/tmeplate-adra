@@ -4,7 +4,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {FormSugerenciasComponent} from "./form-sugerencias/form-sugerencias.component";
 import {SugerenciasComponent} from "./sugerencias.component";
 import {SugerenciasRoutingModule} from "./sugerencias-routing.module";
-import {SugerenciaService} from "../../../providers/services/sugerencia.service";
 
 
 @NgModule({
@@ -17,6 +16,6 @@ import {SugerenciaService} from "../../../providers/services/sugerencia.service"
     ReactiveFormsModule,
     SugerenciasRoutingModule
   ],
-  providers: [SugerenciaService],
+  providers: [],
 })
 export class SugerenciasModule { }

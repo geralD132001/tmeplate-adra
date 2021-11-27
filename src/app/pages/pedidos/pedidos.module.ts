@@ -4,7 +4,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {FormPedidosComponent} from "./form-pedidos/form-pedidos.component";
 import {PedidosComponent} from "./pedidos.component";
 import {PedidosRoutingModule} from "./pedidos-routing.module";
-import {PedidoService} from "../../providers/services/pedido.service";
 
 
 @NgModule({
@@ -17,6 +16,6 @@ import {PedidoService} from "../../providers/services/pedido.service";
     ReactiveFormsModule,
     PedidosRoutingModule
   ],
-  providers: [PedidoService],
+  providers: [],
 })
 export class PedidosModule { }
