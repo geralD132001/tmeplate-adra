@@ -1,4 +1,5 @@
-<app-main-page *ngIf="true"></app-main-page>
-<app-main-page-user *ngIf="false"></app-main-page-user>
+<app-main-page-user *ngIf="authService.hasRole('ROLE_USER')"></app-main-page-user>
+<app-main-page *ngIf="authService.hasRole('ROLE_ADMIN')"></app-main-page>
 
+<app-main-page-public *ngIf="authService.usuario.length ===0"> </app-main-page-public>
 

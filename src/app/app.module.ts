@@ -7,12 +7,10 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {AppRoutingModule} from "./app-routing.module";
 import {CoreModule} from "./core/core.module";
 import {CommonModule} from "@angular/common";
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        DashboardComponent
     ],
     imports: [
         CommonModule,
@@ -26,7 +24,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     ],
     providers: [],
     exports: [
-        AppComponent
+        AppComponent,
     ],
     // Los servicios se ponen en providers
     bootstrap: [AppComponent]

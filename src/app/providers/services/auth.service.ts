@@ -78,7 +78,11 @@ export class AuthService {
     return datos != null && datos.user_name && datos.user_name.length > 0;
   }
   hasRole(role: string): boolean {
-    if (this.usuario.roles.includes(role)) {
+    console.log(this.usuario);
+    if(this.usuario==''){
+      return false;
+    }
+    if(this.usuario.roles.includes(role)) {
       return true;
     }
     return false;

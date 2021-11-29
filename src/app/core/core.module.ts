@@ -12,6 +12,8 @@ import { HeaderunoComponent } from './main-page-user/headeruno/headeruno.compone
 import {FooterunoComponent} from './main-page-user/footeruno/footeruno.component'
 import {NgbCollapseModule} from "@ng-bootstrap/ng-bootstrap";
 import { CoreComponent } from './core.component';
+import {DashboardComponent} from "../pages/dashboard/dashboard.component";
+import { MainPagePublicComponent } from './main-page-public/main-page-public.component';
 
 const BASE_MODULES = [
   CommonModule,
@@ -36,13 +38,19 @@ const CORE_COMPONENTS: any[] = [
     SidebarComponent,
     HeaderunoComponent,
     FooterunoComponent,
-    CoreComponent
+    CoreComponent,
+    DashboardComponent,
+    MainPagePublicComponent
   ],
     imports: [
         ...BASE_MODULES,
-        NgbCollapseModule
+        NgbCollapseModule,
+
     ],
-  exports: [],
+  exports: [
+    MainPageComponent,
+    DashboardComponent
+  ],
   providers: []
 })
 export class CoreModule {

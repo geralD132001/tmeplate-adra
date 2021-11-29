@@ -8,9 +8,9 @@ import {UsuariosRoutingModule} from "./usuarios-routing.module";
   declarations: [
     UsuariosComponent
   ],
-  imports: [
-    CommonModule,
-    UsuariosRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        UsuariosRoutingModule
+    ]
 })
 export class UsuariosModule { }

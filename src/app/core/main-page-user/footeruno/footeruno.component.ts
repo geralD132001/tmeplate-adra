@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {AuthService} from "../../../providers/services/auth.service";
 
 @Component({
   selector: 'app-footeruno',
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class FooterunoComponent implements OnInit {
   test : Date = new Date();
-  constructor(private router: Router ) { }
+  constructor(private router: Router,
+              public authService: AuthService) { }
 
   ngOnInit(): void {
   }
