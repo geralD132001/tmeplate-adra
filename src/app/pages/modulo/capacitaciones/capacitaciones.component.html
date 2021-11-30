@@ -1,30 +1,33 @@
 <!-- Main content -->
-<section class="content-wrapper bg-white " >
-  <table class="table bg-white shadow p-3 mb-5 bg-white rounded ">
+<section >
+  <button type="button" class="btn btn-primary float-right mt-3 mb-3" (click)="openModal()" >Nueva</button>
+  <table class="table bg-white shadow p-3 mb-5 bg-white rounded table-bordered">
     <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Apellido Paterno</th>
-      <th scope="col">Apellido Materno</th>
-      <th scope="col">Dirección</th>
-      <th scope="col">N°Celular</th>
-      <th scope="col">DNI</th>
-      <th scope="col">Nacionalidad</th>
+      <th scope="col">Descripcion</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Estado</th>
       <th colspan="2" class="text-center">Opciones</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let capacitacion of capacitaciones">
     <tr>
-
-
-
+      <td>{{capacitacion.idCapacitacion}}</td>
+      <td>{{capacitacion.nombreCapacitacion}}</td>
+      <td>{{capacitacion.descripcionCapacitacion}}</td>
+      <td>{{capacitacion.tipoCapacitacion}}</td>
+      <td>{{capacitacion.estadoCapacitacion}}</td>
+      <td class="text-center">
+        <button type="button" class="btn btn-warning" (click)="openModalEdit(capacitacion)">Editar</button>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-danger" (click)="onDelete(capacitacion)">Eliminar</button>
+      </td>
     </tr>
     </tbody>
   </table>
-
-
-
 </section>
 <!-- /.content -->
 <!-- /.content-wrapper -->

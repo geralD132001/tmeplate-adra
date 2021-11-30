@@ -8,14 +8,17 @@ import {AuthService} from "../../../providers/services/auth.service";
 
 
 @NgModule({
-  declarations: [
-    LoginComponent
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    LoginRoutingModule
-  ],
-  providers: [AuthService]
+    declarations: [
+        LoginComponent
+    ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        LoginRoutingModule
+    ],
+    exports: [
+        LoginComponent
+    ],
+    providers: [AuthService]
 })
 export class LoginModule { }

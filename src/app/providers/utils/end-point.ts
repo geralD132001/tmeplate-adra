@@ -6,6 +6,7 @@ export const END_POINTS = {
   admin:{
     persona: 'persona',
     banco: 'banco',
+    capacitacion: 'capacitacion',
 
   },
 };

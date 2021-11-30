@@ -1,31 +1,31 @@
-<table class="table bg-white">
-  <caption>Lista de Bancos Comunales</caption>
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">First</th>
-    <th scope="col">Last</th>
-    <th scope="col">Handle</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-  </tr>
-  <tr>
-    <th scope="row">2</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-  </tr>
-  <tr>
-    <th scope="row">3</th>
-    <td>Larry</td>
-    <td>the Bird</td>
-    <td>@twitter</td>
-  </tr>
-  </tbody>
-</table>
+<!-- Main content -->
+<section >
+  <button type="button" class="btn btn-primary float-right mt-3 mb-3"  (click)="openModal()">Nuevo</button>
+  <table class="table bg-white shadow p-3 mb-5 bg-white rounded table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre del Banco</th>
+      <th scope="col">Asesor</th>
+      <th scope="col">Estado del Banco Comunal</th>
+      <th colspan="2" class="text-center">Opciones</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let banco of bancos">
+    <tr>
+      <td>{{banco.idBanco}}</td>
+      <td>{{banco.nombreBanco}}</td>
+      <td>{{banco.nombreEncargado}}</td>
+      <td>{{banco.estadoBanco}}</td>
+      <td class="text-center">
+        <button type="button" class="btn btn-warning" (click)="openModalEdit(banco)">Editar</button>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-danger" (click)="onDelete(banco)">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+<!-- /.content -->
+<!-- /.content-wrapper -->

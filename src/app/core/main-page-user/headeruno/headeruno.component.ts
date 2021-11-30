@@ -13,7 +13,7 @@ export class HeaderunoComponent implements OnInit {
   auth: any;
   focus: any;
   focus1: any;
-  constructor( public authService: AuthService,) { }
+  constructor( public authService: AuthService) { }
 
   ngOnInit(): void {
     this.autorizado = this.authService.isAuthenticated();
