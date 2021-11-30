@@ -115,7 +115,9 @@
       </div>
     </div>
   </nav>
-
+  <div class="container mt-3 pb-5" >
+    <router-outlet></router-outlet>
+  </div>
   <div class="page-header header-filter">
     <div class="squares square1"></div>
     <div class="squares square2"></div>
@@ -143,9 +145,7 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-    <div class="container mt-3 pb-5" >
-      <router-outlet></router-outlet>
-    </div>
+
   </div>
   <footer class="footer" [ngClass]="{'has-cards': getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login'}">
     <div class="container container-lg" *ngIf="getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login'">

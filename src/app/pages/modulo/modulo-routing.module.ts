@@ -49,6 +49,11 @@ const routes: Routes = [
         loadChildren: () => import('src/app/pages/modulo/sugerencias/sugerencias.module')
           .then(m => m.SugerenciasModule),
       },
+      {
+        path: 'resources',
+        loadChildren: () => import('src/app/pages/modulo/recursos/recursos.module')
+          .then(m => m.RecursosModule),
+      },
     ]
   }
 ];
