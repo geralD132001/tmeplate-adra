@@ -1,1 +1,33 @@
-<p>sesiones works!</p>
+<!-- Main content -->
+<section >
+  <button type="button" class="btn btn-primary float-right mt-3 mb-3" (click)="openModal()" >Nueva</button>
+  <table class="table bg-white shadow p-3 mb-5 bg-white rounded table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Descripcion del Tema</th>
+      <th scope="col">Descripción de la Sesion</th>
+      <th scope="col">Fecha de Inicio</th>
+      <th scope="col">Fecha Finalizacion</th>
+      <th colspan="2" class="text-center">Opciones</th>
+    </tr>
+    </thead>
+    <tbody  *ngFor="let sesion of sesiones">
+    <tr>
+      <td>{{sesion.idSesion}}</td>
+      <td>{{sesion.descripcionTema}}</td>
+      <td>{{sesion.descripcionSecion}}</td>
+      <td>{{sesion.fechaInicio | date: 'dd/MM/yyyy'}}</td>
+      <td>{{sesion.fechaFin | date: 'dd/MM/yyyy'}}</td>
+      <td class="text-center">
+        <button type="button" class="btn btn-warning" (click)="openModalEdit(sesion)">Editar</button>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-danger" (click)="onDelete(sesion)">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+<!-- /.content -->
+<!-- /.content-wrapper -->
