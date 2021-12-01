@@ -22,6 +22,7 @@
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "chart.js": "^3.6.0",
     "font-awesome": "^4.7.0",
+    "icheck": "^1.0.2",
     "material-kit": "^2.0.4",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.2.0",
