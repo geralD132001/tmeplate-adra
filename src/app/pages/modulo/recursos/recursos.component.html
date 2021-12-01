@@ -1,1 +1,33 @@
-<p>recursos works!</p>
+<!-- Main content -->
+<section >
+  <button type="button" class="btn btn-primary float-right mt-3 mb-3" (click)="openModal()" >Nuevo</button>
+  <table class="table bg-white shadow p-3 mb-5 bg-white rounded table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre del Recurso</th>
+      <th scope="col">Enlace/URL</th>
+      <th scope="col">Fecha inicial de activación</th>
+      <th scope="col">Fecha de caducidad</th>
+      <th colspan="2" class="text-center">Opciones</th>
+    </tr>
+    </thead>
+    <tbody  *ngFor="let recurso of recursos">
+    <tr>
+      <td>{{recurso.idRecurso}}</td>
+      <td>{{recurso.nombreRecurso}}</td>
+      <td>{{recurso.url}}</td>
+      <td>{{recurso.fechaInicioRecurso | date: 'dd/MM/yyyy'}}</td>
+      <td>{{recurso.fechaFinRecurso | date: 'dd/MM/yyyy'}}</td>
+      <td class="text-center">
+        <button type="button" class="btn btn-warning" (click)="openModalEdit(recurso)">Editar</button>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-danger" (click)="onDelete(recurso)">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+<!-- /.content -->
+<!-- /.content-wrapper -->

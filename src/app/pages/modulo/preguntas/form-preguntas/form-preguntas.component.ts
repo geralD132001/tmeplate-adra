@@ -1,25 +1,26 @@
 import { Component,Input, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {RecursoService} from "../../../../providers/services/recurso.service";
+import {PreguntaService} from "../../../../providers/services/pregunta.service";
 
 @Component({
-  selector: 'app-form-recursos',
-  templateUrl: './form-recursos.component.html',
-  styleUrls: ['./form-recursos.component.css']
+  selector: 'app-form-preguntas',
+  templateUrl: './form-preguntas.component.html',
+  styleUrls: ['./form-preguntas.component.css']
 })
-export class FormRecursosComponent implements OnInit {
+export class FormPreguntasComponent implements OnInit {
 
-  recurso: any[] = [];
+  pregunta: any[] = [];
   @Input() item: any;
-  @Input() id_recurso: any;
+  @Input() id_pregunta: any;
   @Input() title: any;
-  idRecurso: string;
+  idPregunta: string;
   isUpdating: boolean;
   formGroup: FormGroup;
+
   constructor(public activeModal: NgbActiveModal,
               private formBuilder: FormBuilder,
-              private recursoService: RecursoService) { }
+              private preguntaService: PreguntaService) { }
 
   ngOnInit(): void {
     this.inicio();
@@ -28,16 +29,13 @@ export class FormRecursosComponent implements OnInit {
       this.updateData();
     } else {
       this.item = [];
-      this.id_recurso = '';
+      this.id_pregunta = '';
     }
     console.log(this.item);
   }
   private inicio(): any {
     const controls = {
-      nombreRecurso: ['', [Validators.required]],
-      url: ['', [Validators.required]],
-      fechaInicioRecurso: [''],
-      fechaFinRecurso: [''],
+      nombrePregunta: ['', [Validators.required]],
     };
     this.formGroup = this.formBuilder.group(controls);
   }
@@ -47,15 +45,10 @@ export class FormRecursosComponent implements OnInit {
       this.formGroup.markAllAsTouched();
       return;
     }
-
     const save: any = {
-      nombreRecurso: name.nombreRecurso,
-      url: name.url,
-      fechaInicioRecurso: name.fechaInicioRecurso,
-      fechaFinRecurso: name.fechaFinRecurso
+      nombrePregunta: name.nombrePregunta
     };
-
-    this.recursoService.add$(save).subscribe(response => {
+    this.preguntaService.add$(save).subscribe(response => {
       if (response.success) {
         this.activeModal.close({ success: true, message: response.message });
       } else {
@@ -70,14 +63,11 @@ export class FormRecursosComponent implements OnInit {
     }
 
     const save: any = {
-      idRecurso: this.idRecurso,
-      nombreRecurso: name.nombreRecurso,
-      url: name.url,
-      fechaInicioRecurso: name.fechaInicioRecurso,
-      fechaFinRecurso: name.fechaFinRecurso
+      idPregunta: this.idPregunta,
+      nombrePregunta: name.nombrePregunta
     }
 
-    this.recursoService.update$(this.idRecurso, save).subscribe(response => {
+    this.preguntaService.update$(this.idPregunta, save).subscribe(response => {
       if (response.success) {
         this.activeModal.close({ success: true, message: response.message });
       } else {
@@ -88,12 +78,9 @@ export class FormRecursosComponent implements OnInit {
   updateData(): any {
     const data = this.item;
     this.isUpdating = true;
-    this.idRecurso = data.idRecurso;
+    this.idPregunta = data.idPregunta;
     this.formGroup.patchValue({
-      nombreRecurso: data.nombreRecurso,
-      url: data.url,
-      fechaInicioRecurso: data.fechaInicioRecurso,
-      fechaFinRecurso: data.fechaFinRecurso
+      nombrePregunta: data.nombrePregunta
     });
   }
 
@@ -105,4 +92,5 @@ export class FormRecursosComponent implements OnInit {
     return this.formGroup.controls[campo].errors &&
       this.formGroup.controls[campo].touched;
   }
+
 }

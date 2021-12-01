@@ -1,0 +1,26 @@
+<button type="button" class="btn btn-primary float-right mt-3 mb-3" (click)="openModal()">Nueva</button>
+<div class="table-responsive">
+  <table class="table bg-white shadow p-3 mb-5 bg-white rounded table-bordered">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Alternativa</th>
+      <th>Respuesta Correcta</th>
+      <th colspan="2" class="text-center">Opciones</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let alternativa of alternativas">
+    <tr>
+      <td>{{alternativa.idAlternativa}}</td>
+      <td>{{alternativa.nombreAlternativa}}</td>
+      <td>{{alternativa.esCorrecta}}</td>
+      <td class="text-center">
+        <button type="button" class="btn btn-warning" (click)="openModalEdit(alternativa)">Editar</button>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-danger" (click)="onDelete(alternativa)">Eliminar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

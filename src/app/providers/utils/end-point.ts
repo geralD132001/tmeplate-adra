@@ -8,5 +8,9 @@ export const END_POINTS = {
     banco: 'banco',
     capacitacion: 'capacitacion',
     sesion: 'sesion',
+    recurso: 'recurso',
+    pregunta: 'pregunta',
+    alternativa: 'alternativa',
+    pedido: 'pedido',
   },
 };

@@ -1,67 +1,67 @@
 import { Component, OnInit } from '@angular/core';
-import {RecursoService} from "../../../providers/services/recurso.service";
-import {FormRecursosComponent} from "./form-recursos/form-recursos.component";
+import {PreguntaService} from "../../../providers/services/pregunta.service";
+import {FormPreguntasComponent} from "./form-preguntas/form-preguntas.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-recursos',
-  templateUrl: './recursos.component.html',
-  styleUrls: ['./recursos.component.css']
+  selector: 'app-preguntas',
+  templateUrl: './preguntas.component.html',
+  styleUrls: ['./preguntas.component.css']
 })
-export class RecursosComponent implements OnInit {
+export class PreguntasComponent implements OnInit {
 
-  recursos:any[] = [];
-  constructor(private recursoService: RecursoService,
+  preguntas: any[] = [];
+  constructor(private preguntaService: PreguntaService,
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.getRecursos();
+    this.getPreguntas();
   }
-  getRecursos(): void {
-    this.recursoService.getAll$().subscribe(response => {
+  getPreguntas(): void {
+    this.preguntaService.getAll$().subscribe(response => {
       console.log(response);
-      this.recursos = response.data || [];
+      this.preguntas = response.data || [];
     });
   }
 
   openModal(): any {
-    const modal = this.modalService.open(FormRecursosComponent, {
+    const modal = this.modalService.open(FormPreguntasComponent, {
       size: 'lg',
       keyboard: false,
       backdrop: 'static'
     });
-    modal.componentInstance.title = 'Nuevo';
+    modal.componentInstance.title = 'Nueva';
     modal.result.then(res => {
       if (res.success) {
         // @ts-ignore
         Swal.fire({
-          title: 'Recurso',
+          title: 'Pregunta',
           text: `${res.message}`,
           icon: 'success',
           confirmButtonColor: '#7f264a',
           timer: 1500
         });
-        this.getRecursos();
+        this.getPreguntas();
       }
     }).catch(res => {
     });
   }
 
   openModalEdit(item: any): any {
-    const modal = this.modalService.open(FormRecursosComponent, {
+    const modal = this.modalService.open(FormPreguntasComponent, {
       size: 'lg',
       keyboard: false,
       backdrop: 'static'
     });
-    modal.componentInstance.id_recurso = item.id_recurso;
+    modal.componentInstance.id_pregunta = item.id_pregunta;
     modal.componentInstance.item = item;
     modal.componentInstance.title = 'Modificar';
     modal.result.then(res => {
       if (res.success) {
-        this.getRecursos();
+        this.getPreguntas();
         Swal.fire({
-          title: 'Recurso',
+          title: 'Pregunta',
           text: `${res.message}`,
           icon: 'success',
           confirmButtonColor: '#7f264a',
@@ -73,8 +73,8 @@ export class RecursosComponent implements OnInit {
   }
 
   public onDelete(item: any): void {
-    const ID = item.idRecurso;
-    const mensaje = '¿ Desea eliminar? : ' + ' ' + item.idRecurso;
+    const ID = item.idPregunta;
+    const mensaje = '¿ Desea eliminar? : ' + ' ' + item.nombrePregunta;
     if (ID) {
       Swal.fire({
         title: 'Se eliminará el registro',
@@ -89,7 +89,7 @@ export class RecursosComponent implements OnInit {
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.value) {
-          this.recursoService.delete$(ID).subscribe(data => {
+          this.preguntaService.delete$(ID).subscribe(data => {
             if (data.success) {
               Swal.fire({
                 title: 'Eliminado',
@@ -100,7 +100,7 @@ export class RecursosComponent implements OnInit {
                 confirmButtonColor: '#7f264a',
                 timer: 1500,
               });
-              this.getRecursos();
+              this.getPreguntas();
             }
           });
         }

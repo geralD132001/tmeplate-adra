@@ -1,67 +1,70 @@
 import { Component, OnInit } from '@angular/core';
-import {RecursoService} from "../../../providers/services/recurso.service";
-import {FormRecursosComponent} from "./form-recursos/form-recursos.component";
+import {AlternativaService} from "../../../providers/services/alternativa.service";
+import {FormAlternativasComponent} from "./form-alternativas/form-alternativas.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-recursos',
-  templateUrl: './recursos.component.html',
-  styleUrls: ['./recursos.component.css']
+  selector: 'app-alternativas',
+  templateUrl: './alternativas.component.html',
+  styleUrls: ['./alternativas.component.css']
 })
-export class RecursosComponent implements OnInit {
+export class AlternativasComponent implements OnInit {
 
-  recursos:any[] = [];
-  constructor(private recursoService: RecursoService,
+  alternativas: any[] = [];
+  constructor(private alternativaService: AlternativaService,
               private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.getRecursos();
+    this.getAlternativas();
   }
-  getRecursos(): void {
-    this.recursoService.getAll$().subscribe(response => {
+
+  getAlternativas(): void {
+    this.alternativaService.getAll$().subscribe(response => {
       console.log(response);
-      this.recursos = response.data || [];
+      this.alternativas = response.data || [];
     });
   }
 
   openModal(): any {
-    const modal = this.modalService.open(FormRecursosComponent, {
+    const modal = this.modalService.open(FormAlternativasComponent, {
       size: 'lg',
       keyboard: false,
       backdrop: 'static'
     });
-    modal.componentInstance.title = 'Nuevo';
+
+    modal.componentInstance.title = 'Nueva';
     modal.result.then(res => {
       if (res.success) {
         // @ts-ignore
         Swal.fire({
-          title: 'Recurso',
+          title: 'Alternativa',
           text: `${res.message}`,
           icon: 'success',
           confirmButtonColor: '#7f264a',
           timer: 1500
         });
-        this.getRecursos();
+        this.getAlternativas();
       }
     }).catch(res => {
     });
   }
 
   openModalEdit(item: any): any {
-    const modal = this.modalService.open(FormRecursosComponent, {
+    const modal = this.modalService.open(FormAlternativasComponent, {
       size: 'lg',
       keyboard: false,
       backdrop: 'static'
     });
-    modal.componentInstance.id_recurso = item.id_recurso;
+
+    modal.componentInstance.id_alternativa = item.id_alternativa;
     modal.componentInstance.item = item;
     modal.componentInstance.title = 'Modificar';
     modal.result.then(res => {
       if (res.success) {
-        this.getRecursos();
+        this.getAlternativas();
         Swal.fire({
-          title: 'Recurso',
+          title: 'Alternativa',
           text: `${res.message}`,
           icon: 'success',
           confirmButtonColor: '#7f264a',
@@ -73,14 +76,13 @@ export class RecursosComponent implements OnInit {
   }
 
   public onDelete(item: any): void {
-    const ID = item.idRecurso;
-    const mensaje = '¿ Desea eliminar? : ' + ' ' + item.idRecurso;
+    const ID = item.idAlternativa;
+    const mensaje = '¿ Desea eliminar? : ' + ' ' + item.nombreAlternativa;
     if (ID) {
       Swal.fire({
         title: 'Se eliminará el registro',
         text: `${mensaje}`,
         backdrop: true,
-        //animation: true,
         showCloseButton: true,
         showCancelButton: true,
         showConfirmButton: true,
@@ -89,18 +91,17 @@ export class RecursosComponent implements OnInit {
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.value) {
-          this.recursoService.delete$(ID).subscribe(data => {
+          this.alternativaService.delete$(ID).subscribe(data => {
             if (data.success) {
               Swal.fire({
                 title: 'Eliminado',
                 text: data.message,
                 backdrop: true,
-                //animation: true,
                 showConfirmButton: false,
                 confirmButtonColor: '#7f264a',
                 timer: 1500,
               });
-              this.getRecursos();
+              this.getAlternativas();
             }
           });
         }

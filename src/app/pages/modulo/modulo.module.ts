@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {ModuloRoutingModule} from "./modulo-routing.module";
 import {ModuloComponent} from "./modulo.component";
 
+
 @NgModule({
   declarations: [ModuloComponent],
   imports: [

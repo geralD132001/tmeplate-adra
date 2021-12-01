@@ -54,6 +54,16 @@ const routes: Routes = [
         loadChildren: () => import('src/app/pages/modulo/recursos/recursos.module')
           .then(m => m.RecursosModule),
       },
+      {
+        path: 'alternatives',
+        loadChildren: () => import('src/app/pages/modulo/alternativas/alternativas.module')
+          .then(m => m.AlternativasModule),
+      },
+      {
+        path: 'questions',
+        loadChildren: () => import('src/app/pages/modulo/preguntas/preguntas.module')
+          .then(m => m.PreguntasModule),
+      },
     ]
   }
 ];

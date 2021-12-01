@@ -1,25 +1,25 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input,OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {RecursoService} from "../../../../providers/services/recurso.service";
+import {AlternativaService} from "../../../../providers/services/alternativa.service";
 
 @Component({
-  selector: 'app-form-recursos',
-  templateUrl: './form-recursos.component.html',
-  styleUrls: ['./form-recursos.component.css']
+  selector: 'app-form-alternativas',
+  templateUrl: './form-alternativas.component.html',
+  styleUrls: ['./form-alternativas.component.css']
 })
-export class FormRecursosComponent implements OnInit {
+export class FormAlternativasComponent implements OnInit {
 
-  recurso: any[] = [];
+  alternativa: any[] = [];
   @Input() item: any;
-  @Input() id_recurso: any;
+  @Input() id_alternativa: any;
   @Input() title: any;
-  idRecurso: string;
+  idAlternativa: string;
   isUpdating: boolean;
   formGroup: FormGroup;
   constructor(public activeModal: NgbActiveModal,
               private formBuilder: FormBuilder,
-              private recursoService: RecursoService) { }
+              private alternativaService: AlternativaService) { }
 
   ngOnInit(): void {
     this.inicio();
@@ -28,16 +28,15 @@ export class FormRecursosComponent implements OnInit {
       this.updateData();
     } else {
       this.item = [];
-      this.id_recurso = '';
+      this.id_alternativa = '';
     }
     console.log(this.item);
   }
+
   private inicio(): any {
     const controls = {
-      nombreRecurso: ['', [Validators.required]],
-      url: ['', [Validators.required]],
-      fechaInicioRecurso: [''],
-      fechaFinRecurso: [''],
+      nombreAlternativa: ['', [Validators.required]],
+      esCorrecta: ['', [Validators.required]],
     };
     this.formGroup = this.formBuilder.group(controls);
   }
@@ -49,13 +48,11 @@ export class FormRecursosComponent implements OnInit {
     }
 
     const save: any = {
-      nombreRecurso: name.nombreRecurso,
-      url: name.url,
-      fechaInicioRecurso: name.fechaInicioRecurso,
-      fechaFinRecurso: name.fechaFinRecurso
+      nombreAlternativa: name.nombreAlternativa,
+      esCorrecta: name.esCorrecta
     };
 
-    this.recursoService.add$(save).subscribe(response => {
+    this.alternativaService.add$(save).subscribe(response => {
       if (response.success) {
         this.activeModal.close({ success: true, message: response.message });
       } else {
@@ -70,14 +67,11 @@ export class FormRecursosComponent implements OnInit {
     }
 
     const save: any = {
-      idRecurso: this.idRecurso,
-      nombreRecurso: name.nombreRecurso,
-      url: name.url,
-      fechaInicioRecurso: name.fechaInicioRecurso,
-      fechaFinRecurso: name.fechaFinRecurso
+      idAlternativa: this.idAlternativa,
+      nombreAlternativa: name.nombreAlternativa,
+      esCorrecta: name.esCorrecta
     }
-
-    this.recursoService.update$(this.idRecurso, save).subscribe(response => {
+    this.alternativaService.update$(this.idAlternativa, save).subscribe(response => {
       if (response.success) {
         this.activeModal.close({ success: true, message: response.message });
       } else {
@@ -88,12 +82,11 @@ export class FormRecursosComponent implements OnInit {
   updateData(): any {
     const data = this.item;
     this.isUpdating = true;
-    this.idRecurso = data.idRecurso;
+    this.idAlternativa = data.idAlternativa;
     this.formGroup.patchValue({
-      nombreRecurso: data.nombreRecurso,
-      url: data.url,
-      fechaInicioRecurso: data.fechaInicioRecurso,
-      fechaFinRecurso: data.fechaFinRecurso
+      espeNombre: data.espeNombre,
+      nombreAlternativa: data.nombreAlternativa,
+      esCorrecta: data.esCorrecta
     });
   }
 
@@ -105,4 +98,5 @@ export class FormRecursosComponent implements OnInit {
     return this.formGroup.controls[campo].errors &&
       this.formGroup.controls[campo].touched;
   }
+
 }

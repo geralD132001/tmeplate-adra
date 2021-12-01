@@ -1,1 +1,41 @@
-<p>form-recursos works!</p>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">{{title}}Recurso</h4>
+  <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formGroup">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Nombre del Recurso</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="nombreRecurso">
+        <span class="form-text text-danger" *ngIf="validaForm('nombreRecurso')">Ingrese nombre port favor!</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">URL</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="url">
+        <span class="form-text text-danger" *ngIf="validaForm('url')">Ingrese enlane o URL</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Fecha activacion</label>
+      <div class="col-sm-9">
+        <input type="date" class="form-control" formControlName="fechaInicioRecurso">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Fecha de caducidad</label>
+      <div class="col-sm-9">
+        <input type="date" class="form-control" formControlName="fechaFinRecurso">
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" *ngIf="title === 'Nuevo'" class="btn btn-primary" (click)="save(formGroup.value)">Guardar</button>
+  <button type="button" *ngIf="title === 'Modificar'" class="btn btn-primary" (click)="update(formGroup.value)">Modificar</button>
+  <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel click')">Cancelar</button>
+</div>
