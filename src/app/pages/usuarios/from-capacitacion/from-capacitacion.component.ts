@@ -10,6 +10,7 @@ export class FromCapacitacionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
