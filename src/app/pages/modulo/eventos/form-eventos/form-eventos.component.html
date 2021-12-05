@@ -1,1 +1,57 @@
-<p>form-eventos works!</p>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-title">{{title}}Evento</h4>
+  <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formGroup">
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Nombre</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="nombreEvento">
+        <span class="form-text text-danger" *ngIf="validaForm('nombreEvento')">Ingrese nombre</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Descripcion</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="descripEvento">
+        <span class="form-text text-danger" *ngIf="validaForm('descripEvento')">Ingrese observacion</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">URL</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="fileUrl">
+        <span class="form-text text-danger" *ngIf="validaForm('fileUrl')">Ingrese enlace</span>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Fecha Inicio</label>
+      <div class="col-sm-9">
+        <input type="date" class="form-control" formControlName="inicioEvento">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Fecha fin</label>
+      <div class="col-sm-9">
+        <input type="date" class="form-control" formControlName="finEvento">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Estado</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="estadoEvento">
+      </div>
+    </div>
+
+  </form>
+
+</div>
+<div class="modal-footer">
+  <button type="button" *ngIf="title === 'Nueva'" class="btn btn-primary" (click)="save(formGroup.value)">Guardar</button>
+  <button type="button" *ngIf="title === 'Modificar'" class="btn btn-primary" (click)="update(formGroup.value)">Modificar</button>
+  <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel click')">Cancelar</button>
+</div>
+

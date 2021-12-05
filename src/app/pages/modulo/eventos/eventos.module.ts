@@ -5,7 +5,6 @@ import {FormEventosComponent} from "./form-eventos/form-eventos.component";
 import {EventosComponent} from "./eventos.component";
 import {EventosRoutingModule} from "./eventos-routing.module";
 
-
 @NgModule({
   declarations: [
     EventosComponent,

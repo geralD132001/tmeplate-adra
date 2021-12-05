@@ -7,6 +7,7 @@ export const END_POINTS = {
     persona: 'persona',
     banco: 'banco',
     capacitacion: 'capacitacion',
+    evento: 'evento',
     sesion: 'sesion',
     recurso: 'recurso',
     pregunta: 'pregunta',
