@@ -2,6 +2,7 @@ import { Component,Input, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {SesionService} from "../../../../providers/services/sesion.service";
+import {CapacitacionService} from "../../../../providers/services/capacitacion.service";
 
 @Component({
   selector: 'app-form-sesiones',
@@ -10,7 +11,8 @@ import {SesionService} from "../../../../providers/services/sesion.service";
 })
 export class FormSesionesComponent implements OnInit {
 
-  sesion: any;
+  sesion: any[] = [];
+  capacitaciones : any[] = [];
   @Input() item: any;
   @Input() id_sesion: any;
   @Input() title: any;
@@ -19,9 +21,11 @@ export class FormSesionesComponent implements OnInit {
   formGroup: FormGroup;
   constructor(public activeModal: NgbActiveModal,
               private formBuilder: FormBuilder,
-              private sesionService: SesionService) { }
+              private sesionService: SesionService,
+              private capacitacionService: CapacitacionService) { }
 
   ngOnInit(): void {
+    this.getCacapacitaciones();
     this.inicio();
     this.isUpdating = false;
     if (this.item) {
@@ -32,12 +36,20 @@ export class FormSesionesComponent implements OnInit {
     }
     console.log(this.item);
   }
+
+  getCacapacitaciones(): void {
+    this.capacitacionService.getAll$().subscribe(response => {
+      this.capacitaciones = response.data || [];
+    });
+  }
+
   private inicio(): any {
     const controls = {
       descripcionTema: ['', [Validators.required]],
       descripcionSecion: ['', [Validators.required]],
       fechaInicio: [''],
       fechaFin: [''],
+      idCapacitacion:[''],
     };
     this.formGroup = this.formBuilder.group(controls);
   }
@@ -52,7 +64,10 @@ export class FormSesionesComponent implements OnInit {
       descripcionTema: name.descripcionTema,
       descripcionSecion: name.descripcionSecion,
       fechaInicio: name.fechaInicio,
-      fechaFin: name.fechaFin
+      fechaFin: name.fechaFin,
+      capacitacion: {
+        idCapacitacion: name.idCapacitacion
+      }
     };
 
     this.sesionService.add$(save).subscribe(response => {
@@ -74,7 +89,10 @@ export class FormSesionesComponent implements OnInit {
       descripcionTema: name.descripcionTema,
       descripcionSecion: name.descripcionSecion,
       fechaInicio: name.fechaInicio,
-      fechaFin: name.fechaFin
+      fechaFin: name.fechaFin,
+      capacitacion: {
+        idCapacitacion: name.idCapacitacion
+      }
     }
 
     this.sesionService.update$(this.idSesion, save).subscribe(response => {
@@ -93,7 +111,8 @@ export class FormSesionesComponent implements OnInit {
       descripcionTema: data.descripcionTema,
       descripcionSecion: data.descripcionSecion,
       fechaInicio: data.fechaInicio,
-      fechaFin: data.fechaFin
+      fechaFin: data.fechaFin,
+      idCapacitacion: data.idCapacitacion
     });
   }
 

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RecursoService} from "../../../providers/services/recurso.service";
 import {FormRecursosComponent} from "./form-recursos/form-recursos.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import Swal from 'sweetalert2';
+import {Observable} from "rxjs";
+import {UploadFilesService} from "../../../providers/services/upload-files.service";
+import {HttpEventType, HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-recursos',
@@ -11,12 +14,58 @@ import Swal from 'sweetalert2';
 })
 export class RecursosComponent implements OnInit {
 
+  selectedFiles: FileList;
+  progressInfo = [];
+  message = '';
+  imageName = "";
+
+  fileInfos: Observable<any>;
   recursos:any[] = [];
   constructor(private recursoService: RecursoService,
-              private modalService: NgbModal) { }
+              private modalService: NgbModal,
+              private uploadFilesService: UploadFilesService) { }
 
   ngOnInit(): void {
     this.getRecursos();
+    this.fileInfos = this.uploadFilesService.getFiles();
+  }
+
+  selectFiles(event) {
+    this.progressInfo = [];
+    event.target.files.length == 1 ? this.imageName = event.target.files[0].name : this.imageName = event.target.files.length + " archivos";
+    this.selectedFiles = event.target.files;
+  }
+
+  uploadFiles() {
+    this.message = '';
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      this.upload(i, this.selectedFiles[i]);
+    }
+  }
+
+
+  upload(index, file) {
+    this.progressInfo[index] = { value: 0, fileName: file.name };
+
+    this.uploadFilesService.upload(file).subscribe(
+      event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progressInfo[index].value = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          this.fileInfos = this.uploadFilesService.getFiles();
+        }
+      },
+      err => {
+        this.progressInfo[index].value = 0;
+        this.message = 'No se puede subir el archivo ' + file.name;
+      });
+  }
+
+  deleteFile(filename: string) {
+    this.uploadFilesService.deleteFile(filename).subscribe(res => {
+      this.message = res['message'];
+      this.fileInfos = this.uploadFilesService.getFiles();
+    });
   }
   getRecursos(): void {
     this.recursoService.getAll$().subscribe(response => {

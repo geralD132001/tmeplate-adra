@@ -1,94 +1,114 @@
 <div align="center" >
-  <div id="accordion">
-    <div class="card card-olive">
-      <div class="card-header">
-        <h4 class="card-title w-100">
+  <div class="mx-auto rounded" style="width: 750px;"  id="accordion">
+    <div class="card card-olive" *ngFor="let evento of eventos">
+      <div class="card-header" >
+        <h4 class="card-title w-100" >
           <a class="d-block w-100" data-toggle="collapse" href="#collapseThree">
-            Emprendedorismo
+            {{evento.nombreEvento}}
           </a>
         </h4>
       </div>
       <div id="collapseThree" class="collapse" data-parent="#accordion">
         <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
-          3
-          wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
-          laborum
-          eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee
-          nulla
-          assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-          nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-          beer
-          farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-          labore sustainable VHS.
+          {{evento.descEvento}}
+          <div class="dropdown-divider"></div>
+           <h2> Fecha del evento </h2>{{evento.fechaInicioevento | date: 'dd/MM/yyyy'}}
         </div>
       </div>
     </div>
-  </div> <iframe class="shadow-sm p-3 mb-5 bg-white rounded" src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fupeu.campustarapoto%2Fvideos%2F940462823552333%2F&show_text=false&width=560&t=0" width="1100" height="600" style="border:none;overflow:hidden" scrolling="no" frameborder="3" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true">
+  </div> <iframe class="shadow-sm p-3 mb-5 bg-white rounded" src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fupeu.campustarapoto%2Fvideos%2F940462823552333%2F&show_text=false&width=560&t=0" width="1050" height="600" style="border:none;overflow:hidden" scrolling="no" frameborder="3" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true">
 
 </iframe>
 
 </div>
 <body class="row justify-content-center">
-<div class="col-md-3">
-  <div class="card card-outline card-success">
-    <div class="card-header">
-      <h3 class="card-title">Realizar Comentario</h3><img src="https://img.icons8.com/stickers/40/000000/pencil.png"/>
+<div class="col-md-9 shadow p-3 mb-5 bg-white rounded " >
+  <div class="card-header p-2 shadow p-3 mb-5 bg-white rounded"  >
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Realizar comentario</a></li>
+      <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Reaccionar al evento</a></li>
+      <li *ngIf='' class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Evaluación</a></li>
+    </ul>
+  </div><!-- /.card-header -->
+  <div class="card-body-1 ">
+    <div class="tab-content">
+      <div class="active tab-pane" id="activity">
+        <!-- Post -->
+        <div class="col-md-8">
+          <div class="input-group mb-5">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-comments" aria-hidden="true"></i> </span>
+            </div>
+            <input type="text" class="form-control" placeholder="coment">
+            <a routerLink="/order" class="btn btn-outline-success mt-18">Comentar</a>
+          </div>
+          <!-- /.card -->
+        </div>
 
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-          <i class="fas fa-minus"></i>
-        </button>
+
+
       </div>
-      <!-- /.card-tools -->
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-      The body of the card
-    </div>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
-</div>
-<div class="col-md-3">
-  <div class="card card-outline card-success">
-    <div class="card-header">
-      <h3 class="card-title">Reacionar al evento</h3><img src="https://img.icons8.com/color/40/000000/thumb-up--v1.png"/>
+      <!-- /.tab-pane -->
+      <div class="tab-pane" id="timeline">
+        <!-- The timeline -->
+        <div class="timeline timeline-inverse">
 
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-          <i class="fas fa-minus"></i>
-        </button>
+
+        </div>
       </div>
-      <!-- /.card-tools -->
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-      The body of the card
-    </div>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
-</div>
-<div class="col-md-3">
-  <div class="card card-outline card-success">
-    <div class="card-header">
+      <!-- /.tab-pane -->
 
-      <h3 class="card-title rounded">Valoracion del evento </h3><img src="https://img.icons8.com/flat-round/40/000000/bookmark-ribbon.png"/>
-
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-          <i class="fas fa-minus"></i>
-        </button>
+      <div class="tab-pane" id="settings" *ngIf=''>
+        <form class="form-horizontal">
+          <div class="form-group row">
+            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputName" placeholder="Name">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputName2" placeholder="Name">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="offset-sm-2 col-sm-10">
+              <button type="submit" class="btn btn-danger">Submit</button>
+            </div>
+          </div>
+        </form>
       </div>
-      <!-- /.card-tools -->
+      <!-- /.tab-pane -->
     </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-      The body of the card
-    </div>
-    <!-- /.card-body -->
+    <!-- /.tab-content -->
   </div>
-  <!-- /.card -->
 </div>
 </body>

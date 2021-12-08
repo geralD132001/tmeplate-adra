@@ -32,6 +32,22 @@
         <input type="date" class="form-control" formControlName="fechaFinRecurso">
       </div>
     </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Estado</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="estadoRecurso">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Sesion</label>
+      <div class="col-sm-9">
+        <select class="form-control" formControlName="idSesion">
+          <option *ngFor="let sesion of sesiones" [value]="sesion.idSesion">
+            {{sesion.descripcionTema}}
+          </option>
+        </select>
+      </div>
+    </div>
   </form>
 </div>
 <div class="modal-footer">

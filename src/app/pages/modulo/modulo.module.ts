@@ -5,10 +5,11 @@ import {ModuloComponent} from "./modulo.component";
 
 
 @NgModule({
-  declarations: [ModuloComponent],
-  imports: [
-    CommonModule,
-    ModuloRoutingModule,
-  ]
+    declarations: [ModuloComponent],
+
+    imports: [
+        CommonModule,
+        ModuloRoutingModule,
+    ]
 })
 export class ModuloModule { }

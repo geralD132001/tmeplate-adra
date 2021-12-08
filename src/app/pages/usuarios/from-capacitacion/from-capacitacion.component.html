@@ -4,8 +4,8 @@
   <!-- Content Header (Page header) -->
   <section class="content-header" >
       <div class="row mb-4">
-        <div class="col-sm-6">
-          <h3 class=" shadow p-3 mb-5 text-center ml-2  bg-olive rounded">Ventas en Redes Sociales</h3>
+        <div class="col-sm-6" *ngFor="let capacitacion of capacitaciones">
+          <h2 class=" shadow p-3 mb-5 text-center ml-2  bg-olive rounded">{{capacitacion.nombreCapacitacion}}</h2>
         </div>
        <div class="col-sm-5">
 <a class="text-olive shadow p-3 mb-5 rounded">
@@ -14,25 +14,24 @@
   <img src="https://img.icons8.com/plasticine/45/000000/in-progress.png"/>
   <div class="dropdown-divider"></div>
          <div class="progress">
-            <div class="progress-bar progress-bar-striped bg-olive" role="progressbar" style="width: 70%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress-bar progress-bar-striped bg-olive" role="progressbar" style="width: 70%" aria-valuenow="200" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
-
-
        </div>
       </div>
   </section>
 <div class="dropdown-divider"></div>
-<p align="center" >
-  <iframe class="shadow-sm p-3 mb-5 bg-white rounded" width="1050" height="550" src="https://www.youtube.com/embed/u5TvGxd-T7c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
+
+<!-- Tiene que ir la variable con la cual se debe trabajar -->
+<app-video ></app-video>
+
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3">
+        <div>
+        <div class="card card-primary card-outline  col-md-30  shadow p-3 mb-5 bg-white rounded" >
 
-        <!-- Profile Image -->
-        <div class="card card-primary card-outline  col-md-30  shadow p-3 mb-5 bg-white rounded">
           <div class="card-body box-profile">
             <div class="text-center">
               <img class="profile-user-img img-fluid img-circle"
@@ -40,49 +39,59 @@
                    alt="User profile picture">
             </div>
 
-            <h3 class="profile-username text-center">Nina Mcintire</h3>
+            <h3 class="profile-username text-center" >
+              {{persona.nombrePersona}}
+            </h3>
+            <ul class="list-group list-group-unbordered mb-3" >
+              {{persona.apellidoPaterno}}
 
-            <p class="text-muted text-center">Socia</p>
-
-            <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
+                {{persona.apellidoMaterno}}
 
               </li>
               <li class="list-group-item">
+                {{persona.diDireccion}}
+              </li>
+              {{persona.numeroCelular}}
+
+              <li class="list-group-item">
+                {{persona.cod_identidad}}
 
               </li>
-              <li class="list-group-item">
 
+              <li class="list-group-item">
+                {{persona.tiNacionalidad}}
               </li>
             </ul>
-
-            <a href="#" class="btn btn-primary btn-block"><b>Pedidos de oracion</b></a>
           </div>
+
+
+
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
+        </div><!-- Profile Image -->
 
         <!-- About Me Box -->
         <div class="card card-primary col-md-30 shadow p-3 mb-5 bg-white rounded">
           <div class="card-header">
-            <h3 class="card-title">Banco Comunal</h3>
+            <h3 class="card-title"></h3>
+            <a href="#" class="btn btn-primary btn-block" *ngFor="let banco of bancos"><b>
+              {{banco.nombreBanco}}</b></a>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <strong><i class="fas fa-book mr-1"></i> Education</strong>
 
-            <p class="text-muted">
-            </p>
 
             <hr>
 
-            <strong><i class="fas fa-map-marker-alt mr-1"></i> Locación</strong>
+            <strong *ngFor="let banco of bancos" ><i class="fas fa-map-marker-alt mr-1"   > </i> {{banco.nombreEncargado}}</strong>
 
             <p class="text-muted"></p>
 
             <hr>
 
-            <strong><i class="fas fa-pencil-alt mr-1"></i> Habilidades</strong>
+            <strong *ngFor="let banco of bancos" ><i class="far fa-file-alt mr-1"> </i> {{banco.estadoBanco}}</strong>
 
             <p class="text-muted">
 
@@ -90,9 +99,6 @@
 
             <hr>
 
-            <strong><i class="far fa-file-alt mr-1"></i> Notas</strong>
-
-            <p class="text-muted"></p>
           </div>
           <!-- /.card-body -->
         </div>
@@ -112,9 +118,10 @@
               <div class="active tab-pane" id="activity">
                 <!-- Post -->
                 <div class="col-md-13">
-                  <div class="card card-olive">
-                    <div class="card-header ">
-                      <h3 class="card-title">Nombre sesion</h3>
+                  <div class="card card-olive" *ngFor="let sesion of sesiones ; let i = index ">
+                    <div class="card-header " >
+                      <h3 class="card-title">  {{ i + 1 }} -{{sesion.descripcionTema}}
+                      </h3>
                       <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
                           <i class="fas fa-minus"></i>
@@ -123,37 +130,17 @@
 
                       <!-- /.card-tools -->
                     </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                      <button class="icheck-success  btn-lg border border-width ">
-                        <input type="checkbox" id="checkboxSuccess1">
-                        <label for="checkboxSuccess1">
-                          <a class="small text-dark rounded">Descrip</a>
-                          <br>
-                          <br>
-                          <i class="fa fa-play " aria-hidden="true"></i>
-                        </label>
-                      </button>
-                      <div class="dropdown-divider"></div>
-                      <button class="icheck-success  btn-lg border border-width ">
-                        <input type="checkbox" id="checkboxSuccess2">
-                        <label for="checkboxSuccess2">
-                          <a class="small text-dark rounded">Descrip</a>
-                          <br>
-                          <br>
-                          <i class="fa fa-play " aria-hidden="true"></i>
-                        </label>
-                      </button>
-                      <div class="dropdown-divider"></div>
-                      <button class="icheck-success  btn-lg border border-width ">
-                        <input type="checkbox" id="checkboxSuccess3">
-                        <label for="checkboxSuccess3">
-                          <a class="small text-dark rounded">Descrip</a>
-                          <br>
-                          <br>
-                          <i class="fa fa-play " aria-hidden="true"></i>
-                        </label>
-                      </button>
+
+
+                    <div class="card-body"   >
+                      <div >
+                        <label>{{sesion.descripcionSecion}}</label>
+                      </div>
+
+                      <!-- <div >
+                      <label >{{recursos.url}}</label>
+                      </div> -->
+
                       <div class="dropdown-divider"></div>
                       <ul>
                         <li class="nav-item dropdown">
@@ -175,98 +162,6 @@
 
                   <!-- /.card -->
                 </div>
-                <div class="col-md-13">
-                  <div class="card card-olive">
-                    <div class="card-header">
-                      <h3 class="card-title">Nombre sesion</h3>
-                      <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                          <i class="fas fa-minus"></i>
-                        </button>
-                      </div>
-
-                      <!-- /.card-tools -->
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                      <button class="icheck-success  btn-lg border border-width ">
-                        <input type="checkbox" id="checkboxSuccess1">
-                        <label for="checkboxSuccess1">
-                          <a class="small text-dark rounded">Descrip</a>
-                          <br>
-                          <br>
-                          <i class="fa fa-play " aria-hidden="true"></i>
-                        </label>
-                      </button>
-                      <div class="dropdown-divider"></div>
-                      <button class="icheck-success  btn-lg border border-width ">
-                        <input type="checkbox" id="checkboxSuccess1">
-                        <label for="checkboxSuccess1">
-                          <a class="small text-dark rounded">Descrip</a>
-                          <br>
-                          <br>
-                          <i class="fa fa-play " aria-hidden="true"></i>
-                        </label>
-                      </button>
-                      <div class="dropdown-divider"></div>
-
-                      <ul>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle text-olive" data-toggle="dropdown" href="#">
-                            Recursos <img src="https://img.icons8.com/external-wanicon-two-tone-wanicon/40/000000/external-download-cloud-technology-wanicon-two-tone-wanicon.png"/>                          </a>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" tabindex="-1" href="#">Action</a>
-                            <a class="dropdown-item" tabindex="-1" href="#">Another action</a>
-                            <a class="dropdown-item" tabindex="-1" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" tabindex="-1" href="#">Separated link</a>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <!-- /.card-body -->
-                  </div>
-
-                  <!-- /.card -->
-                </div>
-                <div class="col-md-13">
-                  <div class="card card-olive">
-                    <div class="card-header">
-                      <h3 class="card-title">Nombre sesion</h3>
-                      <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                          <i class="fas fa-minus"></i>
-                        </button>
-                      </div>
-
-                      <!-- /.card-tools -->
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                      The body of the card
-                      <div class="dropdown-divider"></div>
-
-                      <ul>
-                        <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle text-olive" data-toggle="dropdown" href="#">
-                            Recursos <img src="https://img.icons8.com/external-wanicon-two-tone-wanicon/40/000000/external-download-cloud-technology-wanicon-two-tone-wanicon.png"/>                          </a>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" tabindex="-1" href="#">Action</a>
-                            <a class="dropdown-item" tabindex="-1" href="#">Another action</a>
-                            <a class="dropdown-item" tabindex="-1" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" tabindex="-1" href="#">Separated link</a>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <!-- /.card-body -->
-                  </div>
-
-                  <!-- /.card -->
-                </div>
 
 
 
@@ -276,14 +171,13 @@
                 <!-- The timeline -->
                 <div class="timeline timeline-inverse">
 
-                  <div class="callout callout-success">
-                    <h5>I am a danger callout!</h5>
+                  <div class="callout callout-success" *ngFor="let capacitacion of capacitaciones">
 
-                    <p>There is a problem that we need to fix. A wonderful serenity has taken possession of my entire
-                      soul,
-                      like these sweet mornings of spring which I enjoy with my whole heart.</p>
+                    <p>{{capacitacion.descripcionCapacitacion}}</p>
                   </div>
+                  <div >
 
+                  </div>
                 </div>
               </div>
               <!-- /.tab-pane -->

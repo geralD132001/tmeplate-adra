@@ -64,6 +64,11 @@ const routes: Routes = [
         loadChildren: () => import('src/app/pages/modulo/preguntas/preguntas.module')
           .then(m => m.PreguntasModule),
       },
+      {
+        path: 'videos',
+        loadChildren: () => import('src/app/pages/modulo/video/video.module')
+          .then(m => m.VideoModule),
+      },
     ]
   }
 ];

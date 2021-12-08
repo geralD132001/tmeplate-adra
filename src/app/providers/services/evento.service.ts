@@ -8,13 +8,10 @@ import {END_POINTS} from "../utils/end-point";
 @Injectable({
   providedIn: 'root'
 })
-export class RecursoService  extends EntityDataService<IResponse>{
+export class EventoService  extends EntityDataService<IResponse>{
 
   constructor(protected httpClient: HttpClient) {
-    super(httpClient, END_POINTS.api+END_POINTS.admin.recurso);
+    super(httpClient, END_POINTS.api+END_POINTS.admin.evento);
   }
 
-  public getBySesion(id: string): Observable<IResponse> {
-    return this.httpClient.get<IResponse>(`${this.endPoint}/sesion/${id}/`);
-  }
 }

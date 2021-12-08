@@ -8,15 +8,18 @@ import {AlternativaService} from "../../../providers/services/alternativa.servic
 
 
 @NgModule({
-  declarations: [
-    AlternativasComponent,
-    FormAlternativasComponent
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    AlternativasRoutingModule
-  ],
-  providers: [AlternativaService],
+    declarations: [
+        AlternativasComponent,
+        FormAlternativasComponent
+    ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        AlternativasRoutingModule
+    ],
+    providers: [AlternativaService],
+    exports: [
+        AlternativasComponent
+    ]
 })
 export class AlternativasModule { }

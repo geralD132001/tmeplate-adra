@@ -51,11 +51,13 @@ export class AuthService {
 
   guardarUsuario(accessToken: string): void {
     let datos = this.obtenerDatosToken(accessToken);
+    console.log(datos);
     this._usuario = {
       nombre: datos.nombre,
       apellido: datos.apellido,
       email: datos.email,
       username: datos.user_name,
+      idPersona: datos.idPersona,
       roles: datos.authorities // roles
     };
     sessionStorage.setItem('usuario', JSON.stringify(this._usuario));

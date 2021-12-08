@@ -1,5 +1,6 @@
+
+<div id="wrap">
 <!-- Main content -->
-<section >
   <button type="button" class="btn btn-primary float-right mt-3 mb-3" (click)="openModal()" >Nuevo</button>
   <table class="table bg-white shadow p-3 mb-5 bg-white rounded table-bordered">
     <thead>
@@ -9,16 +10,20 @@
       <th scope="col">Enlace/URL</th>
       <th scope="col">Fecha inicial de activación</th>
       <th scope="col">Fecha de caducidad</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Sesion</th>
       <th colspan="2" class="text-center">Opciones</th>
     </tr>
     </thead>
     <tbody  *ngFor="let recurso of recursos">
-    <tr>
+    <tr >
       <td>{{recurso.idRecurso}}</td>
       <td>{{recurso.nombreRecurso}}</td>
       <td>{{recurso.url}}</td>
       <td>{{recurso.fechaInicioRecurso | date: 'dd/MM/yyyy'}}</td>
       <td>{{recurso.fechaFinRecurso | date: 'dd/MM/yyyy'}}</td>
+      <td>{{recurso.estadoRecurso}}</td>
+      <td>{{recurso.sesion.descripcionTema}}</td>
       <td class="text-center">
         <button type="button" class="btn btn-warning" (click)="openModalEdit(recurso)">Editar</button>
       </td>
@@ -28,6 +33,50 @@
     </tr>
     </tbody>
   </table>
-</section>
+
+  <mat-card id="box1">
+    <div mode="buffer" *ngFor="let progess of progressInfo">
+      <span>{{progess.fileName}}</span>
+      <span>{{progess.value}}%</span>
+      <div id="progressbar">
+        <mat-progress-bar mode="buffer" value={{progess.value}}>
+        </mat-progress-bar>
+      </div>
+    </div>
+  </mat-card>
+
+  <div id="box2">
+    <button id="selectButton" class ="btn btn-success " mat-raised-button (click)="fileInput.click()">Seleccionar los archivos a subir</button>
+
+    <input #fileInput type="file" hidden multiple (change)="selectFiles($event)" />
+    <span *ngIf="imageName">{{imageName}}</span>
+
+    <button id="uploadButton"class ="btn btn- "   mat-raised-button *ngIf="selectedFiles" [disabled]="!selectedFiles" (click)="uploadFiles()">
+      Subir Archivos
+    </button>
+  </div>
+
+  <div id="box3">
+    <span>{{message}}</span>
+  </div>
+
+
+  <div id="box4">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Lista de Archivos</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul>
+          <li *ngFor="let file of fileInfos | async">
+            <a href="{{file.url}}">{{file.name}}</a>
+            <mat-icon (click)="deleteFile(file.name)">delete</mat-icon>
+          </li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
 <!-- /.content -->
 <!-- /.content-wrapper -->
