@@ -36,7 +36,6 @@ export class AlternativasComponent implements OnInit {
     modal.componentInstance.title = 'Nueva';
     modal.result.then(res => {
       if (res.success) {
-        // @ts-ignore
         Swal.fire({
           title: 'Alternativa',
           text: `${res.message}`,

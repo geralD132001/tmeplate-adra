@@ -17,9 +17,6 @@ import {AlternativaService} from "../../../providers/services/alternativa.servic
         ReactiveFormsModule,
         AlternativasRoutingModule
     ],
-    providers: [AlternativaService],
-    exports: [
-        AlternativasComponent
-    ]
+    providers: [AlternativaService]
 })
 export class AlternativasModule { }
