@@ -1,13 +1,17 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4 ">
+<div id="colorspro">
+<aside class="main-sidebar elevation-4 " style="background: #ECE9E6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
   <!-- Brand Logo -->
-  <a href="../../index3.html" class="brand-link   bg-olive">
+  <a href="../../index3.html" class="brand-link   ">
     <img src="../../../../assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light ">Adra Gestión</span>
+    <span class="brand-text font-weight-light text-olive">Adra Gestión</span>
   </a>
 
   <!-- Sidebar -->
-  <div class="sidebar  bg-olive">
+  <div class="sidebar ">
     <!-- Sidebar user (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
@@ -29,185 +33,93 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
-              Dashboard
+              Modulo
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <a routerLink="/modulo/persons" class="nav-link">
-                <i class="far fa-user ml-2"></i>
-                <p class="ml-2 text-center">Socia</p>
+                <i class="far fa-user  ml-2"></i>
+                <p class="ml-2 text-center">Personas registradas</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="/modulo/socias" class="nav-link">
+                <i class="fa fa-user-plus ml-2"></i>
+                <p class="ml-2 text-center">Socias afiliadas</p>
               </a>
             </li>
             <li class="nav-item ">
               <a  routerLink="/modulo/banks" class="nav-link">
                 <i class="fa fa-university ml-2"></i>
-                <p class=" ml-2  text-center" routerLink="/modulo/banks">Banco</p>
+                <p class=" ml-2  text-center" routerLink="/modulo/banks">Bancos comunales</p>
               </a>
             </li>
             <li class="nav-item">
               <a routerLink="/modulo/trainings" class="nav-link">
                 <i class="fa fa-bookmark ml-2"></i>
-                <p class="ml-2 text-center">Capacitacion</p>
+                <p class="ml-2 text-center">Capacitaciones</p>
               </a>
             </li>
             <li class="nav-item">
               <a routerLink="/modulo/events" class="nav-link">
                 <i class="fa fa-calendar ml-2"></i>
-                <p class="ml-2 text-center">Evento</p>
+                <p class="ml-2 text-center">Eventos</p>
               </a>
             </li>
             <li class="nav-item">
               <a routerLink="/modulo/sessions" class="nav-link">
                 <i class="fa fa-check-circle ml-2"></i>
-                <p class="ml-2 text-center">Sesion</p>
+                <p class="ml-2 text-center">Sesiones</p>
               </a>
             </li>
             <li class="nav-item">
               <a routerLink="/modulo/resources" class="nav-link">
                 <i class="fa fa-archive ml-2"></i>
-                <p class="ml-2 text-center">Recurso</p>
+                <p class="ml-2 text-center">Recursos</p>
               </a>
             </li>
             <li class="nav-item">
+              <a routerLink="/modulo/tiposrecursos" class="nav-link">
+                <i class="fa fa-window-restore ml-2"></i>
+                <p class="ml-2 text-center">Tipos de recursos</p>
+              </a>
+            </li>
+            <li class="nav-item" *ngIf="">
               <a routerLink="/modulo/questions" class="nav-link">
                 <i class="fa fa-question ml-2"></i>
-                <p class="ml-2 text-center">Pregunta</p>
+                <p class="ml-2 text-center">Preguntas</p>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="">
               <a routerLink="/modulo/alternatives" class="nav-link">
                 <i class="fa fa-circle ml-2"></i>
-                <p class="ml-2 text-center">Alternativa</p>
+                <p class="ml-2 text-center">Alternativas</p>
+              </a>
+            </li>
+            <li class="nav-item" *ngIf="">
+              <a routerLink="/modulo/reportes" class="nav-link">
+                <i class="fa fa-circle ml-2"></i>
+                <p class="ml-2 text-center">Pedidos de oracion</p>
               </a>
             </li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="container">
-          </a>
-        </li>
 
+          <li class="nav-item"  *ngIf="">
+            <a  routerLink="/users/reportes"  class="nav-link">
+              <i class="fa fa-cubes nav-icon"></i>
+              <p>Reportes</p>
+            </a>
+          </li>
       </ul>
+
+
     </nav>
+
     <!-- /.sidebar-menu -->
   </div>
   <!-- /.sidebar -->
 </aside>
+</div>

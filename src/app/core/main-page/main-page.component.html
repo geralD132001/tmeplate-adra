@@ -1,10 +1,12 @@
 <app-header ></app-header >
 <app-sidebar></app-sidebar>
-<div class="container mt-3 pb-5" >
-  <section class="content-wrapper bg-white" >
+  <section class="content-wrapper bg-white" style="background: #1D976C;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #93F9B9, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #93F9B9, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+" >
     <router-outlet></router-outlet>
   </section>
-</div>
+
 <app-footer></app-footer>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->

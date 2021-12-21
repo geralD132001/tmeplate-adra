@@ -12,10 +12,13 @@
         <div class="card-body">
           {{evento.descEvento}}
           <div class="dropdown-divider"></div>
-           <h2> Fecha del evento </h2>{{evento.fechaInicioevento | date: 'dd/MM/yyyy'}}
+          <h2> Fecha del evento </h2>{{evento.fechaInicioevento | date: 'dd/MM/yyyy'}}
         </div>
       </div>
     </div>
+    <a class="nav-link no-caret" data-toggle="dropdown" role="button">
+      <a class="btn btn-outline-info " routerLink="/users/home" >Regresar </a>
+    </a>
   </div> <iframe class="shadow-sm p-3 mb-5 bg-white rounded" src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fupeu.campustarapoto%2Fvideos%2F940462823552333%2F&show_text=false&width=560&t=0" width="1050" height="600" style="border:none;overflow:hidden" scrolling="no" frameborder="3" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true">
 
 </iframe>
@@ -40,7 +43,7 @@
               <span class="input-group-text"><i class="fa fa-comments" aria-hidden="true"></i> </span>
             </div>
             <input type="text" class="form-control" placeholder="coment">
-            <a routerLink="/order" class="btn btn-outline-success mt-18">Comentar</a>
+            <a routerLink="/order" class="btn btn-outline-success mt-18" >Comentar</a>
           </div>
           <!-- /.card -->
         </div>

@@ -99,7 +99,7 @@
             </div>
           </li>
         </ul>
-         <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right">
           <li *ngIf="!autorizado" class="nav-item" routerLinkActive="active">
             <a class="btn btn-outline-success" routerLink="/users/login">Sign In</a>
           </li>
@@ -127,13 +127,13 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="d-block w-100 "src="./assets/dist/img/pexels-ella-olsson-1640773.jpg" alt="First slide">
+          <img class="d-block w-100"  src="./assets/dist/img/Banco%20comunal_0.jpg" alt="First slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="./assets/dist/img/pexels-daria-shevtsova-709823%20(1).jpg"  alt="Second slide">
+          <img class="d-block w-100" src="./assets/dist/img/PORTADA%20PMF%20FB.jpg"  alt="Second slide">
         </div>
         <div class="carousel-item">
-          <img class="d-block w-100" src="./assets/dist/img/pexels-ron-lach-10260861.jpg" alt="Third slide">
+          <img class="d-block w-100" src="./assets/dist/img/PORTADA%20GPS%20FB.jpg" alt="Third slide">
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -149,68 +149,14 @@
   </div>
 
 </div>
-<footer class="footer footer-expand" [ngClass]="{'has-cards': getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login'}">
-  <div class="container container-lg" *ngIf="getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login'">
-    <div class="row">
-      <div class="col-md-6 mb-5 mb-md-0">
-        <div class="card card-lift--hover shadow border-0">
-          <a [routerLink]="['/landing']" title="Landing Page">
-          </a>
-        </div>
-      </div>
-      <div class="col-md-6 mb-5 mb-lg-0">
-        <div class="card card-lift--hover shadow border-0">
-          <a [routerLink]="['/user-profile']" title="Profile Page">
-          </a>
-        </div>
-      </div>
-    </div>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2021 Copyright:
+    <a href="https://mdbootstrap.com/"> Hyperion-app</a>
   </div>
-  <div class="container">
-    <div class="row row-grid align-items-center" [ngClass]="{'my-md': getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login', 'mb-5':getPath()==='/user-profile' || getPath()==='/register' || getPath()==='/login'}">
-      <div class="col-lg-6">
-        <h3 class="text-primary font-weight-light mb-2">¡Gracias por apoyarnos!</h3>
-        <h4 class="mb-0 font-weight-light">Pongámonos en contacto en cualquiera de estas plataformas</h4>
-      </div>
-      <div class="col-lg-6 text-lg-center btn-wrapper">
-        <a target="_blank" href="https://twitter.com/creativetim" class="btn btn-neutral btn-icon-only btn-twitter btn-round btn-lg" ngbTooltip="Follow us">
-          <i class=" fa fa-twitter"></i>
-        </a>
-        <a target="_blank" href="https://www.facebook.com/creativetim" class="btn btn-neutral btn-icon-only btn-facebook btn-round btn-lg" ngbTooltip="Like us">
-          <i class="fa fa-facebook-square"></i>
-        </a>
-        <a target="_blank" href="https://dribbble.com/creativetim" class="btn btn-neutral btn-icon-only btn-dribbble btn-lg btn-round" ngbTooltip="Follow us">
-          <i class="fa fa-dribble"></i>
-        </a>
-        <a target="_blank" href="https://github.com/creativetimofficial" class="btn btn-neutral btn-icon-only btn-github btn-round btn-lg" ngbTooltip="Star on Github">
-          <i class="fa fa-github"></i>
-        </a>
-      </div>
-    </div>
-    <hr>
-    <div class="row align-items-center justify-content-md-between">
-      <div class="col-md-6">
-        <div class="copyright">
-          &copy; {{test | date: 'yyyy'}}
-          <a href="https://www.creative-tim.com?ref=adsa-footer" target="_blank">Creative Tim</a>.
-        </div>
-      </div>
-      <div class="col-md-6">
-        <ul class="nav nav-footer justify-content-end">
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com?ref=adsa-footer" class="nav-link" target="_blank">Creative Tim</a>
-          </li>
-          <li class="nav-item">
-            <a href="https://www.creative-tim.com/presentation?ref=adsa-footer" class="nav-link" target="_blank">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a href="http://blog.creative-tim.com?ref=adsa-footer" class="nav-link" target="_blank">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a href="https://github.com/creativetimofficial/argon-design-system-angular/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  <!-- Copyright -->
+
 </footer>
+<!-- Footer -->

@@ -6,6 +6,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Pregunta</th>
+      <th scope="col">Recurso</th>
       <th colspan="2" class="text-center">Opciones</th>
     </tr>
     </thead>
@@ -13,6 +14,7 @@
     <tr>
       <td>{{pregunta.idPregunta}}</td>
       <td>{{pregunta.nombrePregunta}}</td>
+      <td>{{pregunta.recurso.nombreRecurso}}</td>
       <td class="text-center">
         <button type="button" class="btn btn-warning" (click)="openModalEdit(pregunta)">Editar</button>
       </td>

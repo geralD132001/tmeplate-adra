@@ -62,52 +62,31 @@
         <li class="nav-item dropdown">
           <a class="nav-link no-caret" data-toggle="dropdown" role="button">
             <i class="ni ni-collection d-lg-none"></i>
-            <span class="nav-link-inner--text">Mas informacion</span>
+            <a class="btn btn-outline-success" (click)="openModal()">Pedido de oracion</a>
           </a>
-          <div class="dropdown-menu">
-            <a [routerLink]="['/landing']" class="dropdown-item">Landing</a>
-            <a [routerLink]="['/user-profile']" class="dropdown-item">Profile</a>
-            <a [routerLink]="['/login']" class="dropdown-item">Login</a>
-            <a [routerLink]="['/register']" class="dropdown-item">Register</a>
-          </div>
         </li>
+
       </ul>
 
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
+
         <!-- Navbar Search -->
-        <li class="nav-item">
-          <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-            <i class="fas fa-search"></i>
-          </a>
-          <div class="navbar-search-block">
-            <form class="form-inline">
-              <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                  <button class="btn btn-navbar" type="submit">
-                    <i class="fas fa-search"></i>
-                  </button>
-                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                    <i class="fa fa-times"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </li>
+
       </ul>
         <ul class="nav navbar-nav navbar-right">
           <li *ngIf="!autorizado" class="nav-item" routerLinkActive="active">
-            <a class="btn btn-outline-success" routerLink="/login/main-page-public">Sign In</a>
+
+            <a class="btn btn-outline-secondary" routerLink="/login/main-page-public">Sign In</a>
           </li>
           <li *ngIf="autorizado" class="dropdown">
-            <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+            <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
               {{auth.usuario.username}}
             </a>
+
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item bg-olive" href="#" (click)="logout()">Cerrar Sesión</a>
+              <a class="dropdown-item bg-secondary" href="#" (click)="logout()">Cerrar Sesión</a>
             </div>
           </li>
         </ul>

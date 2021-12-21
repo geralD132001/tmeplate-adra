@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {RecursoService} from "../../../../providers/services/recurso.service";
 import {SesionService} from "../../../../providers/services/sesion.service";
+import {TiporecursoService} from "../../../../providers/services/tiporecurso.service";
+import {Observable} from "rxjs";
+import {HttpEventType, HttpResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-form-recursos',
@@ -11,8 +14,14 @@ import {SesionService} from "../../../../providers/services/sesion.service";
 })
 export class FormRecursosComponent implements OnInit {
 
-  recurso: any[] = [];
+
+  selectedFiles: FileList;
+  progressInfo = [];
+  message = '';
+  imageName = "";
+  fileInfos: Observable<any>;
   sesiones: any [] = [];
+  tiposRecursos: any[] = [];
   @Input() item: any;
   @Input() id_recurso: any;
   @Input() title: any;
@@ -22,11 +31,14 @@ export class FormRecursosComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal,
               private formBuilder: FormBuilder,
               private recursoService: RecursoService,
-              private sesionService: SesionService) { }
+              private sesionService: SesionService,
+              private tipoRecursoService: TiporecursoService) { }
 
   ngOnInit(): void {
+    this.fileInfos = this.recursoService.getFiles();
     this.inicio();
     this.getSesiones();
+    this.getTiporecursos();
     this.isUpdating = false;
     if (this.item) {
       this.updateData();
@@ -39,6 +51,11 @@ export class FormRecursosComponent implements OnInit {
 
 
 
+  getTiporecursos(): void {
+    this.tipoRecursoService.getAll$().subscribe(response => {
+      this.tiposRecursos = response.data || [];
+    });
+  }
   getSesiones(): void {
     this.sesionService.getAll$().subscribe(response => {
       this.sesiones = response.data || [];
@@ -48,10 +65,12 @@ export class FormRecursosComponent implements OnInit {
     const controls = {
       nombreRecurso: ['', [Validators.required]],
       url: ['', [Validators.required]],
+      name : [''],
       fechaInicioRecurso: [''],
       fechaFinRecurso: [''],
       estadoRecurso: [''],
       idSesion: [''],
+      idTiporecur:[''],
     };
     this.formGroup = this.formBuilder.group(controls);
   }
@@ -65,11 +84,15 @@ export class FormRecursosComponent implements OnInit {
     const save: any = {
       nombreRecurso: name.nombreRecurso,
       url: name.url,
+      name: name.name,
       fechaInicioRecurso: name.fechaInicioRecurso,
       fechaFinRecurso: name.fechaFinRecurso,
       estadoRecurso: name.estadoRecurso,
       sesion: {
         idSesion: name.idSesion
+      },
+      tiporecurso: {
+        idTiporecur: name.idTiporecur
       }
     };
 
@@ -91,11 +114,15 @@ export class FormRecursosComponent implements OnInit {
       idRecurso: this.idRecurso,
       nombreRecurso: name.nombreRecurso,
       url: name.url,
+      name: name.name,
       fechaInicioRecurso: name.fechaInicioRecurso,
       fechaFinRecurso: name.fechaFinRecurso,
       estadoRecurso: name.estadoRecurso,
       sesion: {
         idSesion: name.idSesion
+      },
+      tiporecurso: {
+        idTiporecur: name.idTiporecur
       }
     }
 
@@ -114,10 +141,12 @@ export class FormRecursosComponent implements OnInit {
     this.formGroup.patchValue({
       nombreRecurso: data.nombreRecurso,
       url: data.url,
+      name: data.name,
       fechaInicioRecurso: data.fechaInicioRecurso,
       fechaFinRecurso: data.fechaFinRecurso,
       estadoRecurso: data.estadoRecurso,
-      idSesion: data.idSesion
+      idSesion: data.idSesion,
+      idTiporecur: data.idTiporecur
     });
   }
 
@@ -128,5 +157,42 @@ export class FormRecursosComponent implements OnInit {
   validaForm(campo: string) {
     return this.formGroup.controls[campo].errors &&
       this.formGroup.controls[campo].touched;
+  }
+
+
+  selectFiles(event) {
+    this.progressInfo = [];
+    event.target.files.length == 1 ? this.imageName = event.target.files[0].name : this.imageName = event.target.files.length + " archivos";
+    this.selectedFiles = event.target.files;
+  }
+  uploadFiles() {
+    this.message = '';
+    for (let i = 0; i < this.selectedFiles.length; i++) {
+      this.upload(i, this.selectedFiles[i]);
+    }
+  }
+
+  upload(index, file) {
+    this.progressInfo[index] = { value: 0, fileName: file.name };
+
+    this.recursoService.upload(file).subscribe(
+      event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progressInfo[index].value = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          this.fileInfos = this.recursoService.getFiles();
+        }
+      },
+      err => {
+        this.progressInfo[index].value = 0;
+        this.message = 'No se puede subir el archivo ' + file.name;
+      });
+  }
+
+  deleteFile(filename: string) {
+    this.recursoService.deleteFile(filename).subscribe(res => {
+      this.message = res['message'];
+      this.fileInfos = this.recursoService.getFiles();
+    });
   }
 }

@@ -13,6 +13,10 @@ export class CapacitacionService  extends EntityDataService<IResponse>{
   constructor(protected httpClient: HttpClient) {
     super(httpClient, END_POINTS.api+END_POINTS.admin.capacitacion);
   }
+
+
+
+
   /*
     private apiUrl: string = "http://localhost:8080/api/employee";
 

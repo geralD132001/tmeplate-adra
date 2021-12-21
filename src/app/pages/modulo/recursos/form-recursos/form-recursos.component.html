@@ -20,6 +20,13 @@
         <span class="form-text text-danger" *ngIf="validaForm('url')">Ingrese enlane o URL</span>
       </div>
     </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Nombre del archivo</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="name">
+      </div>
+    </div>
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">Fecha activacion</label>
       <div class="col-sm-9">
@@ -33,12 +40,6 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Estado</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="estadoRecurso">
-      </div>
-    </div>
-    <div class="form-group row">
       <label class="col-sm-3 col-form-label">Sesion</label>
       <div class="col-sm-9">
         <select class="form-control" formControlName="idSesion">
@@ -48,10 +49,47 @@
         </select>
       </div>
     </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Tipo de recurso</label>
+      <div class="col-sm-9">
+        <select class="form-control" formControlName="idTiporecur">
+          <option *ngFor="let tiporecurso of tiposRecursos" [value]="tiporecurso.idTiporecur">
+            {{tiporecurso.nombreTiporecurso}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <mat-card id="box1">
+      <div mode="buffer" *ngFor="let progess of progressInfo">
+        <span>{{progess.fileName}}</span>
+        <span>{{progess.value}}%</span>
+        <div id="progressbar">
+          <mat-progress-bar mode="buffer" value={{progess.value}}>
+          </mat-progress-bar>
+        </div>
+      </div>
+    </mat-card>
+
+    <div id="box2">
+      <button id="selectButton" class ="btn btn-success " mat-raised-button (click)="fileInput.click()">Seleccionar los archivos a subir</button>
+
+      <input #fileInput type="file" hidden multiple (change)="selectFiles($event)" />
+      <span *ngIf="imageName">{{imageName}}</span>
+
+      <button id="uploadButton" class="btn btn-outline-info"   *ngIf="selectedFiles" [disabled]="!selectedFiles" (click)="uploadFiles()">Subir Archivos
+      </button>
+    </div>
+
+    <div id="box3">
+      <span>{{message}}</span>
+    </div>
+
+
+
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" *ngIf="title === 'Nuevo'" class="btn btn-primary" (click)="save(formGroup.value)">Guardar</button>
-  <button type="button" *ngIf="title === 'Modificar'" class="btn btn-primary" (click)="update(formGroup.value)">Modificar</button>
+  <button type="button" *ngIf="title === 'Nuevo'" class="btn btn-success" (click)="save(formGroup.value)">Guardar</button>
+  <button type="button" *ngIf="title === 'Modificar'" class="btn" style="background: #95a5a6" (click)="update(formGroup.value)">Modificar</button>
   <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel click')">Cancelar</button>
 </div>

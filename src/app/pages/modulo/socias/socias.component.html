@@ -1,0 +1,21 @@
+<div class="table-responsive">
+  <br>
+  <br>
+  <br>
+  <table class="table bg-white shadow p-3 mb-5 bg-white rounded table-bordered" class="table bg-white shadow p-1 mb-5 bg-white rounded table-striped" style="background:#ecf0f1;">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Persona afiliada</th>
+      <th>Banco comunal perteneciente</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let socia of socias">
+    <tr>
+      <td>{{socia.idSocia}}</td>
+      <td>{{socia.persona.nombrePersona}}</td>
+      <td>{{socia.bancoComunal.nombreBanco}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

@@ -4,7 +4,10 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {FormPedidosComponent} from "./form-pedidos/form-pedidos.component";
 import {PedidosComponent} from "./pedidos.component";
 import {PedidosRoutingModule} from "./pedidos-routing.module";
-import {PedidoService} from "../../providers/services/pedido.service";
+import {PedidoService} from "../../../providers/services/pedido.service";
+import {MatTableModule} from "@angular/material/table";
+import {MatButtonModule} from "@angular/material/button";
+import {MatTableExporterModule} from "mat-table-exporter";
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import {PedidoService} from "../../providers/services/pedido.service";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    PedidosRoutingModule
+    PedidosRoutingModule,
+    MatTableModule,
+    MatButtonModule,
+    MatTableExporterModule
   ],
   providers: [PedidoService],
 })

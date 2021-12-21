@@ -5,7 +5,7 @@ import {EventosComponent} from "./eventos.component";
 const routes: Routes = [
   {
     path: '',
-    component: EventosComponent
+    component: EventosComponent,
   }
 ];
 

@@ -1,7 +1,9 @@
 <!-- Main content -->
 <section >
-  <button type="button" class="btn btn-primary float-right mt-3 mb-3" (click)="openModal()" >Nueva</button>
-  <table class="table bg-white shadow p-3 mb-5 bg-white rounded table-bordered">
+  <br>
+  <br>
+  <br>
+  <table class="table bg-white shadow p-1 mb-5 bg-white rounded table-striped" style="background:#ecf0f1;">
     <thead>
     <tr>
       <th scope="col">#</th>
@@ -12,7 +14,7 @@
       <th scope="col">N°Celular</th>
       <th scope="col">DNI</th>
       <th scope="col">Nacionalidad</th>
-      <th colspan="2" class="text-center">Opciones</th>
+      <th colspan="3" class="text-center">Opciones</th>
     </tr>
     </thead>
     <tbody  *ngFor="let persona of personas">
@@ -26,10 +28,14 @@
       <td>{{persona.cod_identidad}}</td>
       <td>{{persona.tiNacionalidad}}</td>
       <td class="text-center">
-        <button type="button" class="btn btn-warning" (click)="openModalEdit(persona)">Editar</button>
+        <button type="button" class="btn btn-success  text-white"  (click)="openModal()" >Nueva</button>
       </td>
       <td class="text-center">
-        <button type="button" class="btn btn-danger" (click)="onDelete(persona)">Eliminar</button>
+        <button type="button" class="btn text-white" style="background: #95a5a6" (click)="openModalEdit(persona)">Editar</button>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn text-white " style="background: #b33939;
+" (click)="onDelete(persona)">Eliminar</button>
       </td>
     </tr>
     </tbody>

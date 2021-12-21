@@ -3,11 +3,12 @@ import {BancoService} from "../../../providers/services/banco.service";
 import {PersonaService} from "../../../providers/services/persona.service";
 import {CapacitacionService} from "../../../providers/services/capacitacion.service";
 import {SesionService} from "../../../providers/services/sesion.service";
-import {UploadFilesService} from "../../../providers/services/upload-files.service";
 import {RecursoService} from "../../../providers/services/recurso.service";
 import {Observable} from "rxjs";
 import { DomSanitizer } from '@angular/platform-browser';
 import {AuthService} from "../../../providers/services/auth.service";
+import {ActivatedRoute} from '@angular/router';
+import {SociaService} from "../../../providers/services/socia.service";
 
 @Component({
   selector: 'app-from-capacitacion',
@@ -16,15 +17,14 @@ import {AuthService} from "../../../providers/services/auth.service";
 })
 export class FromCapacitacionComponent implements OnInit {
 
+  idCapacitacion: any = this.activatedRoute.snapshot.paramMap.get('id_capacitacion');
+
   persona: any;
-  capacitaciones: any[]= [];
+  banco: any;
+  capacitacion: any;
   sesiones: any[]= [];
-  recursos:any;
-  bancos: any [] = [];
+
   selectedFiles: FileList;
-  idBanco: string;
-  idSesion: string;
-  idRecurso: string;
   progressInfo = [];
   message = '';
   imageName = "";
@@ -37,73 +37,58 @@ export class FromCapacitacionComponent implements OnInit {
               private personaService: PersonaService,
               private capacitacionService: CapacitacionService,
               private sesionService: SesionService,
-              private uploadFilesService: UploadFilesService,
               private recursoService: RecursoService,
-              private _sanitizer: DomSanitizer) { }
+              private _sanitizer: DomSanitizer,
+              private activatedRoute : ActivatedRoute,
+              private sociaService: SociaService) { }
 
   ngOnInit(): void {
-    this.getBancos();
+    console.log(this.idCapacitacion)
+    console.log(this.sesiones);
+    console.log(this.banco);
     this.getPersonas();
-    this.getSesiones();
-    this.getCapacitaciones();
-    this.getRecursos(this.idSesion);
-    this.fileInfos = this.uploadFilesService.getFiles();
+    this.getCapacitacion();
+    this.getBanco();
+
+    this.fileInfos = this.recursoService.getFiles();
 
   }
-  getBancos(): void {
-    this.bancoService.getAll$().subscribe(response => {
-      console.log(response);
-      this.bancos = response.data || [];
-    });
-  }
 
-
-
-
-  getCapacitaciones(): void {
-    this.capacitacionService.getAll$().subscribe(response => {
-      console.log(response);
-      this.capacitaciones = response.data || [];
-    });
-  }
-
-  getSesiones(): void {
-    this.sesionService.getAll$().subscribe(response => {
-      console.log(response);
-      this.sesiones = response.data || [];
-    });
-  }
   getPersonas(): void {
     this.personaService.getById$(this.authService.usuario.idPersona).subscribe(response => {
-      console.log(response);
+      // console.log(response);   this.idCapacitacion
       this.persona = response.data || [];
     });
   }
 
-  /*getRecursos(): void {
-    this.recursoService.getAll$().subscribe(response => {
-      console.log(response);
-      this.recursos = response.data || [];
+  getBanco(): void {
+    this.bancoService.getById$(this.authService.usuario.idPersona).subscribe(response => {
+      this.banco = response.data || [];
     });
-  }*/
- getRecursos(idSesion: any): any {
-    this.recursoService.getBySesion(idSesion).subscribe(response => {
-      console.log(response);
-      this.recursos = response.data || [];
-    });
-    return this.recursos;
   }
 
-  getVideoIframe(url) {
-    var video, results;
 
-    if (url === null) {
-      return '';
-    }
-    results = url.match('[\\?&]v=([^&#]*)');
-    video   = (results === null) ? url : results[1];
-
-    return this._sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/u5TvGxd-T7c' + video);
+  getCapacitacion(): void {
+    this.capacitacionService.getById$(this.idCapacitacion).subscribe(response => {
+      // console.log(response);
+      this.capacitacion = response.data || [];
+    }, () => {}, () => {
+      this.getSesiones(this.idCapacitacion);
+    });
   }
+
+
+  getSesiones(idCapacitacion: any): any {
+    this.sesionService.getByCapacitacion(idCapacitacion).subscribe(response => {
+      this.sesiones = response.data || [];
+    });
+  }
+
+
+  calificar(item){
+    console.log(item);
+  }
+
+
 
 }

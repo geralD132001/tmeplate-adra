@@ -13,4 +13,8 @@ export class SesionService  extends EntityDataService<IResponse>{
   constructor(protected httpClient: HttpClient) {
     super(httpClient, END_POINTS.api+END_POINTS.admin.sesion);
   }
+
+  public getByCapacitacion(id: string): Observable<IResponse> {
+    return this.httpClient.get<IResponse>(`${this.endPoint}/capacitacion/${id}`);
+  }
 }

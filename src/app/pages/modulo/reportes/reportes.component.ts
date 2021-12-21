@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reportes.component.css']
 })
 export class ReportesComponent implements OnInit {
-
+  oraciones: any [] = [];
   constructor() { }
 
   ngOnInit(): void {

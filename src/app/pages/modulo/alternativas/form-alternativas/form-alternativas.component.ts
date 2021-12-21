@@ -2,6 +2,7 @@ import { Component, Input,OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {AlternativaService} from "../../../../providers/services/alternativa.service";
+import {PreguntaService} from "../../../../providers/services/pregunta.service";
 
 @Component({
   selector: 'app-form-alternativas',
@@ -11,6 +12,7 @@ import {AlternativaService} from "../../../../providers/services/alternativa.ser
 export class FormAlternativasComponent implements OnInit {
 
   alternativa: any[] = [];
+  preguntas: any[] = [];
   @Input() item: any;
   @Input() id_alternativa: any;
   @Input() title: any;
@@ -19,10 +21,12 @@ export class FormAlternativasComponent implements OnInit {
   formGroup: FormGroup;
   constructor(public activeModal: NgbActiveModal,
               private formBuilder: FormBuilder,
-              private alternativaService: AlternativaService) { }
+              private alternativaService: AlternativaService,
+              private preguntaService: PreguntaService) { }
 
   ngOnInit(): void {
     this.inicio();
+    this.getPreguntas();
     this.isUpdating = false;
     if (this.item) {
       this.updateData();
@@ -33,10 +37,19 @@ export class FormAlternativasComponent implements OnInit {
     console.log(this.item);
   }
 
+
+  getPreguntas(): void {
+    this.preguntaService.getAll$().subscribe(response => {
+      console.log(response);
+      this.preguntas = response.data || [];
+    });
+  }
+
   private inicio(): any {
     const controls = {
       nombreAlternativa: ['', [Validators.required]],
       esCorrecta: ['', [Validators.required]],
+      idPregunta: [''],
     };
     this.formGroup = this.formBuilder.group(controls);
   }
@@ -49,7 +62,10 @@ export class FormAlternativasComponent implements OnInit {
 
     const save: any = {
       nombreAlternativa: name.nombreAlternativa,
-      esCorrecta: name.esCorrecta
+      esCorrecta: name.esCorrecta,
+      pregunta: {
+        idPregunta: name.idPregunta
+      }
     };
 
     this.alternativaService.add$(save).subscribe(response => {
@@ -69,7 +85,10 @@ export class FormAlternativasComponent implements OnInit {
     const save: any = {
       idAlternativa: this.idAlternativa,
       nombreAlternativa: name.nombreAlternativa,
-      esCorrecta: name.esCorrecta
+      esCorrecta: name.esCorrecta,
+      pregunta: {
+        idPregunta: name.idPregunta
+      }
     }
     this.alternativaService.update$(this.idAlternativa, save).subscribe(response => {
       if (response.success) {
@@ -84,9 +103,9 @@ export class FormAlternativasComponent implements OnInit {
     this.isUpdating = true;
     this.idAlternativa = data.idAlternativa;
     this.formGroup.patchValue({
-      espeNombre: data.espeNombre,
       nombreAlternativa: data.nombreAlternativa,
-      esCorrecta: data.esCorrecta
+      esCorrecta: data.esCorrecta,
+      idPregunta: data.idPregunta
     });
   }
 

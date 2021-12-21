@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-title">{{title}}Persona</h4>
+  <h3 class="modal-title text-dark" id="modal-title">{{title}} Persona <i class="fa fa-id-badge" aria-hidden="true"></i></h3>
   <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -53,7 +53,7 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button type="button" *ngIf="title === 'Nueva'" class="btn btn-primary" (click)="save(formGroup.value)">Guardar</button>
-  <button type="button" *ngIf="title === 'Modificar'" class="btn btn-primary" (click)="update(formGroup.value)">Modificar</button>
+  <button type="button" *ngIf="title === 'Nueva'" class="btn btn-success" (click)="save(formGroup.value)">Guardar</button>
+  <button type="button" *ngIf="title === 'Modificar'"  style="background: #95a5a6" (click)="update(formGroup.value)">Modificar</button>
   <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel click')">Cancelar</button>
 </div>

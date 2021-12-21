@@ -17,11 +17,11 @@
       <label class="col-sm-3 col-form-label">Asesor encargado</label>
       <div class="col-sm-9">
         <input type="text" class="form-control" formControlName="nombreEncargado">
-        <span class="form-text text-danger" *ngIf="validaForm('nombreEncargado')">Ingrese observacion</span>
+        <span class="form-text text-danger" *ngIf="validaForm('nombreEncargado')">Ingrese nombre del encargado </span>
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Estado del Banco Comunal</label>
+      <label class="col-sm-3 col-form-label">Ingrese observaciones</label>
       <div class="col-sm-9">
         <input type="text" class="form-control" formControlName="estadoBanco">
       </div>
@@ -30,7 +30,7 @@
 
 </div>
 <div class="modal-footer">
-  <button type="button" *ngIf="title === 'Nuevo'" class="btn btn-primary" (click)="save(formGroup.value)">Guardar</button>
+  <button type="button" *ngIf="title === 'Nuevo'" class="btn btn-success" (click)="save(formGroup.value)">Guardar</button>
   <button type="button" *ngIf="title === 'Modificar'" class="btn btn-primary" (click)="update(formGroup.value)">Modificar</button>
   <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel click')">Cancelar</button>
 </div>

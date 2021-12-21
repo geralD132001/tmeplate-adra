@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-title">{{title}}Capacitacion</h4>
+  <h4 class="modal-title" id="modal-title">{{title}} Capacitacion</h4>
   <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="activeModal.dismiss('Cross click')">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -21,15 +21,9 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Tipo</label>
+      <label class="col-sm-3 col-form-label">Cantidad de recursos vistos</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="tipoCapacitacion">
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Estado</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" formControlName="estadoCapacitacion">
+        <input type="number" class="form-control" formControlName="cantRecurso">
       </div>
     </div>
 
@@ -37,7 +31,7 @@
 
 </div>
 <div class="modal-footer">
-  <button type="button" *ngIf="title === 'Nueva'" class="btn btn-primary" (click)="save(formGroup.value)">Guardar</button>
-  <button type="button" *ngIf="title === 'Modificar'" class="btn btn-primary" (click)="update(formGroup.value)">Modificar</button>
+  <button type="button" *ngIf="title === 'Nueva'" class="btn btn-success" (click)="save(formGroup.value)">Guardar</button>
+  <button type="button" *ngIf="title === 'Modificar'" class="btn" style="background: #95a5a6" (click)="update(formGroup.value)">Modificar</button>
   <button type="button" class="btn btn-outline-secondary" (click)="activeModal.dismiss('cancel click')">Cancelar</button>
 </div>

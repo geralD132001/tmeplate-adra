@@ -11,7 +11,7 @@ import {END_POINTS} from "../utils/end-point";
 export class PedidoService extends EntityDataService<IResponse>{
 
   constructor(protected httpClient: HttpClient) {
-    super(httpClient, END_POINTS.api+END_POINTS.admin.pedido);
+    super(httpClient, END_POINTS.api+END_POINTS.admin.oracion);
   }
   /*
     private apiUrl: string = "http://localhost:8080/api/employee";

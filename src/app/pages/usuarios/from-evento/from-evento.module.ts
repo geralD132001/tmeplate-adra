@@ -15,5 +15,6 @@ import {FromEventoRoutingModule} from "./from-evento-routing.module";
     FromEventoRoutingModule
   ],
   providers: [],
+
 })
 export class FromEventoModule { }

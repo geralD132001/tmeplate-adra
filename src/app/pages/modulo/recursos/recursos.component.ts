@@ -3,9 +3,12 @@ import {RecursoService} from "../../../providers/services/recurso.service";
 import {FormRecursosComponent} from "./form-recursos/form-recursos.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import Swal from 'sweetalert2';
-import {Observable} from "rxjs";
-import {UploadFilesService} from "../../../providers/services/upload-files.service";
-import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {GeneralService} from "../../../providers/general.service";
+import {SesionService} from "../../../providers/services/sesion.service";
+import {CapacitacionService} from "../../../providers/services/capacitacion.service";
+
+
 
 @Component({
   selector: 'app-recursos',
@@ -14,59 +17,16 @@ import {HttpEventType, HttpResponse} from "@angular/common/http";
 })
 export class RecursosComponent implements OnInit {
 
-  selectedFiles: FileList;
-  progressInfo = [];
-  message = '';
-  imageName = "";
-
-  fileInfos: Observable<any>;
-  recursos:any[] = [];
+  recursos: any[] = [];
+  formsFilter: FormGroup;
   constructor(private recursoService: RecursoService,
-              private modalService: NgbModal,
-              private uploadFilesService: UploadFilesService) { }
+              private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getRecursos();
-    this.fileInfos = this.uploadFilesService.getFiles();
-  }
-
-  selectFiles(event) {
-    this.progressInfo = [];
-    event.target.files.length == 1 ? this.imageName = event.target.files[0].name : this.imageName = event.target.files.length + " archivos";
-    this.selectedFiles = event.target.files;
-  }
-
-  uploadFiles() {
-    this.message = '';
-    for (let i = 0; i < this.selectedFiles.length; i++) {
-      this.upload(i, this.selectedFiles[i]);
-    }
   }
 
 
-  upload(index, file) {
-    this.progressInfo[index] = { value: 0, fileName: file.name };
-
-    this.uploadFilesService.upload(file).subscribe(
-      event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          this.progressInfo[index].value = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          this.fileInfos = this.uploadFilesService.getFiles();
-        }
-      },
-      err => {
-        this.progressInfo[index].value = 0;
-        this.message = 'No se puede subir el archivo ' + file.name;
-      });
-  }
-
-  deleteFile(filename: string) {
-    this.uploadFilesService.deleteFile(filename).subscribe(res => {
-      this.message = res['message'];
-      this.fileInfos = this.uploadFilesService.getFiles();
-    });
-  }
   getRecursos(): void {
     this.recursoService.getAll$().subscribe(response => {
       console.log(response);
@@ -83,7 +43,6 @@ export class RecursosComponent implements OnInit {
     modal.componentInstance.title = 'Nuevo';
     modal.result.then(res => {
       if (res.success) {
-        // @ts-ignore
         Swal.fire({
           title: 'Recurso',
           text: `${res.message}`,
@@ -156,4 +115,58 @@ export class RecursosComponent implements OnInit {
       });
     }
   }
+
+  /*private initFormFields(): void{
+     const controls = {
+       id_capacitacion: [''],
+       id_Sesion: [''],
+     };
+     this.formsFilter = this.formBuilder.group(controls);
+   }
+ */
+
+ /*listCapacitaciones(): void{
+
+    this.capacitacionService.getAll$().subscribe(
+      capacitacion => {
+        this.capacitaciones = capacitacion.data || [];
+        this.capacitaciones.map( a =>{
+          const ab = a.selection;
+          if(ab === '1'){
+            const idSection: any = this.capacitaciones.find( c =>{
+              return c.selection === ab;
+            });
+            this.formsFilter.patchValue({id_capacitacion: idSection.id_capacitacion});
+          }
+        });
+      }
+    );
+  }
+*/
+/*anySesions(capacitaciones) : void{
+ console.log(capacitaciones);
+ this.sesiones = [];
+ this.formsFilter.patchValue({id_sesion: ''});
+ this.sesionService.getAll$().subscribe(
+   sesion =>{
+     this.sesiones = sesion.data || [];
+     if(this.sesiones.length > 0){
+       this.sesiones.map(d =>{
+         const abc = d.selection;
+         if(abc === '1'){
+           const idSection: any = this.sesiones.find( e => {
+             return e.selection === abc;
+           });
+           this.formsFilter.patchValue({id_sesion: idSection.id_sesion});
+         }
+       })
+     }
+   }
+ );
+}
+*/
+
+
+
+
 }

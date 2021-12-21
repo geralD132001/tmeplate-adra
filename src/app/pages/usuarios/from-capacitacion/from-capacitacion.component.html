@@ -4,63 +4,62 @@
   <!-- Content Header (Page header) -->
   <section class="content-header" >
       <div class="row mb-4">
-        <div class="col-sm-6" *ngFor="let capacitacion of capacitaciones">
-          <h2 class=" shadow p-3 mb-5 text-center ml-2  bg-olive rounded">{{capacitacion.nombreCapacitacion}}</h2>
+        <div class="col-sm-6">
+          <h2 class=" shadow p-3 mb-5 text-center ml-8  bg-olive rounded">{{capacitacion?.nombreCapacitacion}}</h2>
         </div>
-       <div class="col-sm-5">
-<a class="text-olive shadow p-3 mb-5 rounded">
-  Tu progreso
-</a>
-  <img src="https://img.icons8.com/plasticine/45/000000/in-progress.png"/>
-  <div class="dropdown-divider"></div>
-         <div class="progress">
-            <div class="progress-bar progress-bar-striped bg-olive" role="progressbar" style="width: 70%" aria-valuenow="200" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button">
+            <a class="btn btn-outline-info fa fa-circle" routerLink="/users/home" >Regresar </a>
+          </a>
+        <a class="nav-link no-caret" data-toggle="dropdown" role="button">
+          <a class="btn btn-outline-info fa fa-street-view" routerLink="/users/home" >Valorar capacitacion
+          </a>
+          <span  onclick="calificar(this)" class="fa fa-star text-olive" id="1estrella"></span>
+          <span class="fa fa-star text-olive" id="2estrella"></span>
+          <span class="fa fa-star text-olive" id="3estrella"></span>
+          <span class="fa fa-star text-olive" id="4estrella"></span>
+          <span class="fa fa-star text-olive" id="5estrella"></span>
+        </a>
        </div>
-      </div>
   </section>
+<iframe name="youtu_1" src="https://www.youtube.com/embed/ZEZcIEuGSx0" style="width:100%; height: 600px ; border:none;"></iframe>
 <div class="dropdown-divider"></div>
-
-<!-- Tiene que ir la variable con la cual se debe trabajar -->
-<app-video ></app-video>
-
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-3">
         <div>
-        <div class="card card-primary card-outline  col-md-30  shadow p-3 mb-5 bg-white rounded" >
+        <div class="card card-success card-outline  col-md-30  shadow p-3 mb-5 bg-white rounded" >
 
           <div class="card-body box-profile">
             <div class="text-center">
-              <img class="profile-user-img img-fluid img-circle"
-                   src="../../assets/dist/img/user4-128x128.jpg"
-                   alt="User profile picture">
+
+
             </div>
 
             <h3 class="profile-username text-center" >
-              {{persona.nombrePersona}}
+              <label>{{persona?.nombrePersona}} <img src="https://img.icons8.com/color/48/000000/security-checked--v1.png"/></label>
             </h3>
             <ul class="list-group list-group-unbordered mb-3" >
-              {{persona.apellidoPaterno}}
+              <label> <i class="fa fa-id-card" aria-hidden="true"></i> {{persona?.apellidoPaterno}}</label>
 
               <li class="list-group-item">
-                {{persona.apellidoMaterno}}
+                <label><i class="fa fa-hashtag" aria-hidden="true"></i>{{persona?.apellidoMaterno}}</label>
 
               </li>
               <li class="list-group-item">
-                {{persona.diDireccion}}
+                <label> <i class="fa fa-assistive-listening-systems" aria-hidden="true"></i>{{persona?.diDireccion}}</label>
               </li>
-              {{persona.numeroCelular}}
+              <label><i class="fa fa-phone-square" aria-hidden="true"></i>{{persona?.numeroCelular}}</label>
+
 
               <li class="list-group-item">
-                {{persona.cod_identidad}}
+                <label><i class="fa fa-microchip" aria-hidden="true"></i>{{persona?.cod_identidad}}</label>
 
               </li>
 
               <li class="list-group-item">
-                {{persona.tiNacionalidad}}
+                <label> <i class="fa fa-female" aria-hidden="true"></i> {{persona?.tiNacionalidad}}</label>
               </li>
             </ul>
           </div>
@@ -73,25 +72,22 @@
         </div><!-- Profile Image -->
 
         <!-- About Me Box -->
-        <div class="card card-primary col-md-30 shadow p-3 mb-5 bg-white rounded">
-          <div class="card-header">
-            <h3 class="card-title"></h3>
-            <a href="#" class="btn btn-primary btn-block" *ngFor="let banco of bancos"><b>
-              {{banco.nombreBanco}}</b></a>
+        <div class="card card-success card-outline  col-md-30  shadow p-3 mb-5 bg-white rounded">
+          <div class="card-header"  >
+            <label class="text-center">Banco Comunal</label><img src="https://img.icons8.com/color/48/000000/bank-building.png"/>
+            <h3 class="card-title">
+            </h3>
+            <a class="btn btn-success btn-block" >{{banco?.nombreBanco}} <b>
+              </b></a>
           </div>
           <!-- /.card-header -->
-          <div class="card-body">
-
-
-            <hr>
-
-            <strong *ngFor="let banco of bancos" ><i class="fas fa-map-marker-alt mr-1"   > </i> {{banco.nombreEncargado}}</strong>
+          <div >
 
             <p class="text-muted"></p>
 
             <hr>
 
-            <strong *ngFor="let banco of bancos" ><i class="far fa-file-alt mr-1"> </i> {{banco.estadoBanco}}</strong>
+            <strong  ><i class="far fa-file-alt mr-1"> </i>    {{banco?.nombreEncargado}}  </strong>
 
             <p class="text-muted">
 
@@ -111,7 +107,10 @@
               <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Contenido de la Capacitación</a></li>
               <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Descripcion General</a></li>
               <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Evaluación</a></li>
+
+
             </ul>
+
           </div><!-- /.card-header -->
           <div class="card-body-1 ">
             <div class="tab-content">
@@ -120,7 +119,7 @@
                 <div class="col-md-13">
                   <div class="card card-olive" *ngFor="let sesion of sesiones ; let i = index ">
                     <div class="card-header " >
-                      <h3 class="card-title">  {{ i + 1 }} -{{sesion.descripcionTema}}
+                      <h3 class="card-title"> {{sesion.descripcionTema}}
                       </h3>
                       <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -128,31 +127,39 @@
                         </button>
                       </div>
 
-                      <!-- /.card-tools -->
                     </div>
-
 
                     <div class="card-body"   >
                       <div >
-                        <label>{{sesion.descripcionSecion}}</label>
+                        <label> </label>
+                        <ul *ngIf="this.sesion.idSesion == '2'">
+                          <li>  <a href="https://www.youtube.com/embed/VYp6n607bDY" target="youtu_1"  class="text-olive">{{sesion.descripcionSecion}}</a></li>
+                        </ul>
+                        <ul *ngIf="this.sesion.idSesion == '7'">
+                          <li>  <a href="https://www.youtube.com/embed/ZEZcIEuGSx0" target="youtu_1" class="text-olive">{{sesion.descripcionSecion}}</a></li>
+                        </ul>
+                        <ul *ngIf="this.sesion.idSesion == '8'">
+                          <li>  <a href="https://www.youtube.com/embed/oEI-iWwKYws" target="youtu_1" class="text-olive">{{sesion.descripcionSecion}}</a></li>
+                        </ul>
+                        <ul *ngIf="this.sesion.idSesion == '6'">
+                          <li>  <a href="https://www.youtube.com/embed/MgmZZ8FLOpk" target="youtu_1" class="text-olive">{{sesion.descripcionSecion}}</a></li>
+                        </ul>
+                        <ul *ngIf="this.sesion.idSesion == '9'">
+                          <li>  <a href="https://www.youtube.com/embed/kdE6ZmT_5MI" target="youtu_1" class="text-olive">{{sesion.descripcionSecion}}</a></li>
+                        </ul>
+                        <ul *ngIf="this.sesion.idSesion == '13'">
+                          <li>  <a href="https://www.youtube.com/embed/u5TvGxd-T7c" target="youtu_1" class="text-olive">{{sesion.descripcionSecion}}</a></li>
+                        </ul>
                       </div>
-
-                      <!-- <div >
-                      <label >{{recursos.url}}</label>
-                      </div> -->
-
                       <div class="dropdown-divider"></div>
-                      <ul>
+                      <ul *ngFor="let recurso of sesion.recursos">
+
                         <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle text-olive" data-toggle="dropdown" href="#">
-                           Recursos <img src="https://img.icons8.com/external-wanicon-two-tone-wanicon/40/000000/external-download-cloud-technology-wanicon-two-tone-wanicon.png"/>                          </a>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" tabindex="-1" href="#">Action</a>
-                            <a class="dropdown-item" tabindex="-1" href="#">Another action</a>
-                            <a class="dropdown-item" tabindex="-1" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" tabindex="-1" href="#">Separated link</a>
-                          </div>
+                          {{recurso.nombreRecurso}}
+                          <a class="dropdown-item" tabindex="-1" href="{{recurso.url}}"><img src="https://img.icons8.com/color/50/000000/downloads.png"/></a>
+
+
+
                         </li>
                       </ul>
                     </div>
@@ -171,9 +178,9 @@
                 <!-- The timeline -->
                 <div class="timeline timeline-inverse">
 
-                  <div class="callout callout-success" *ngFor="let capacitacion of capacitaciones">
+                  <div class="callout callout-success" >
 
-                    <p>{{capacitacion.descripcionCapacitacion}}</p>
+                    <p>{{capacitacion?.descripcionCapacitacion}}</p>
                   </div>
                   <div >
 
@@ -182,7 +189,7 @@
               </div>
               <!-- /.tab-pane -->
 
-              <div class="tab-pane" id="settings">
+              <div class="tab-pane" id="settings" >
                 <form class="form-horizontal">
                   <div class="form-group row">
                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
@@ -230,6 +237,7 @@
                   </div>
                 </form>
               </div>
+
               <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
@@ -238,9 +246,15 @@
         <!-- /.card -->
       <!-- /.col -->
     </div>
+  </div>
     <!-- /.row -->
-  </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
 <!-- /.content-wrapper -->
 </body>
+
+<script>
+  function calificar(item){
+    console.log(item);
+  }
+</script>

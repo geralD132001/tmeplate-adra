@@ -8,6 +8,11 @@ import { FormRecursosComponent } from './form-recursos/form-recursos.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {NbSelectModule} from "@nebular/theme";
+import {SesionService} from "../../../providers/services/sesion.service";
+import {CapacitacionService} from "../../../providers/services/capacitacion.service";
+import {CapacitacionesComponent} from "../capacitaciones/capacitaciones.component";
+import {SesionesComponent} from "../sesiones/sesiones.component";
 
 @NgModule({
   declarations: [
@@ -20,8 +25,10 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     RecursosRoutingModule,
     MatCardModule,
     MatIconModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    NbSelectModule,
+
   ],
-  providers: [RecursoService],
+  providers: [RecursoService,CapacitacionService],
 })
 export class RecursosModule { }

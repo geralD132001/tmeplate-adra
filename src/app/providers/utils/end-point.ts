@@ -11,7 +11,7 @@ export const END_POINTS = {
     recurso: 'recurso',
     pregunta: 'pregunta',
     alternativa: 'alternativa',
-    pedido: 'pedido',
+    oracion: 'oracion',
     evento: 'evento',
     socia: 'socia',
     tiporecurso: 'tiporecurso'

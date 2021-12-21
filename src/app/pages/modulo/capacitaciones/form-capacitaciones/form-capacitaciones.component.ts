@@ -36,7 +36,7 @@ export class FormCapacitacionesComponent implements OnInit {
     const controls = {
       nombreCapacitacion: ['', [Validators.required]],
       descripcionCapacitacion: ['', [Validators.required]],
-      tipoCapacitacion: [''],
+      cantRecurso: [''],
       estadoCapacitacion: [''],
     };
     this.formGroup = this.formBuilder.group(controls);
@@ -50,7 +50,7 @@ export class FormCapacitacionesComponent implements OnInit {
     const save: any = {
       nombreCapacitacion: name.nombreCapacitacion,
       descripcionCapacitacion: name.descripcionCapacitacion,
-      tipoCapacitacion: name.tipoCapacitacion,
+      cantRecurso: name.cantRecurso,
       estadoCapacitacion: name.estadoCapacitacion
     };
     this.capacitacionService.add$(save).subscribe(response => {
@@ -71,7 +71,7 @@ export class FormCapacitacionesComponent implements OnInit {
       idCapacitacion: this.idCapacitacion,
       nombreCapacitacion: name.nombreCapacitacion,
       descripcionCapacitacion: name.descripcionCapacitacion,
-      tipoCapacitacion: name.tipoCapacitacion,
+      cantRecurso: name.cantRecurso,
       estadoCapacitacion: name.estadoCapacitacion
     }
     this.capacitacionService.update$(this.idCapacitacion, save).subscribe(response => {
@@ -89,7 +89,7 @@ export class FormCapacitacionesComponent implements OnInit {
     this.formGroup.patchValue({
       nombreCapacitacion: data.nombreCapacitacion,
       descripcionCapacitacion: data.descripcionCapacitacion,
-      tipoCapacitacion: data.tipoCapacitacion,
+      cantRecurso: data.cantRecurso,
       estadoCapacitacion: data.estadoCapacitacion
     });
   }

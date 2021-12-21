@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {ModuloComponent} from "./modulo.component";
+import {TiposrecursosModule} from "./tiporecursos/tiposrecursos.module";
+import {PedidosModule} from "../usuarios/pedidos/pedidos.module";
 
 
 const routes: Routes = [
@@ -68,6 +70,21 @@ const routes: Routes = [
         path: 'videos',
         loadChildren: () => import('src/app/pages/modulo/video/video.module')
           .then(m => m.VideoModule),
+      },
+      {
+        path: 'socias',
+        loadChildren: () => import('src/app/pages/modulo/socias/socias.module')
+          .then(m => m.SociasModule),
+      },
+      {
+        path: 'tiposrecursos',
+        loadChildren: () => import('src/app/pages/modulo/tiporecursos/tiposrecursos.module')
+          .then(m => m.TiposrecursosModule),
+      },
+      {
+        path: 'reportes',
+        loadChildren: () => import('src/app/pages/usuarios/pedidos/pedidos.module')
+          .then(m => m.PedidosModule),
       },
     ]
   }

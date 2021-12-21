@@ -15,7 +15,7 @@ const routes: Routes = [
       },
       {
         path: 'order',
-        loadChildren: () => import('./pages/pedidos/pedidos.module')
+        loadChildren: () => import('./pages/usuarios/pedidos/pedidos.module')
           .then(m => m.PedidosModule)
       },
       {

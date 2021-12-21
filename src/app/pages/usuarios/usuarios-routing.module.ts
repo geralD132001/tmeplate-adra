@@ -20,15 +20,16 @@ const routes: Routes = [
           .then(m => m.HomeModule),
       },
       {
-        path: 'training',
+        path: 'training/:id_capacitacion',
         loadChildren: () => import('src/app/pages/usuarios/from-capacitacion/from-capacitacion.module')
           .then(m => m.FromCapacitacionModule),
       },
       {
-        path: 'event',
+        path: 'event/:id_evento',
         loadChildren: () => import('src/app/pages/usuarios/from-evento/from-evento.module')
           .then(m => m.FromEventoModule),
       },
+
     ]
   }
 ];

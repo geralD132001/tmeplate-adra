@@ -1,17 +1,34 @@
 
 <div id="wrap">
-<!-- Main content -->
-  <button type="button" class="btn btn-primary float-right mt-3 mb-3" (click)="openModal()" >Nuevo</button>
-  <table class="table bg-white shadow p-3 mb-5 bg-white rounded table-bordered">
+  <!--  <form [formGroup]="formsFilter">
+     <div class="container">
+       <div class="row justify-content-center">
+         <div class="col-md-3 text-center">
+         <label class="label">Capacitaciòn</label>
+           <nb-select fullWidth placeholder="Capacitacion" formControlName="id_capacitacion" size="small"
+              (ngModelChange)="anySesions($event)">
+             <nb-option *ngFor="let capacitacion of capacitaciones" [value]="capacitacion.id_capacitacion">{{capacitacion.nombreCapacitacion}}
+             </nb-option>
+           </nb-select>
+         </div>
+       </div>
+     </div>
+   </form>
+  -->
+  <br>
+  <br>
+ <!-- Main content -->
+  <table class="table bg-white shadow p-1 mb-5 bg-white rounded table-striped" style="background:#ecf0f1;">
     <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nombre del Recurso</th>
       <th scope="col">Enlace/URL</th>
+      <th scope="col">Nombre del archivo</th>
       <th scope="col">Fecha inicial de activación</th>
       <th scope="col">Fecha de caducidad</th>
-      <th scope="col">Estado</th>
       <th scope="col">Sesion</th>
+      <th scope="col">Tipo recurso</th>
       <th colspan="2" class="text-center">Opciones</th>
     </tr>
     </thead>
@@ -20,63 +37,23 @@
       <td>{{recurso.idRecurso}}</td>
       <td>{{recurso.nombreRecurso}}</td>
       <td>{{recurso.url}}</td>
+      <td>{{recurso.name}}</td>
       <td>{{recurso.fechaInicioRecurso | date: 'dd/MM/yyyy'}}</td>
       <td>{{recurso.fechaFinRecurso | date: 'dd/MM/yyyy'}}</td>
-      <td>{{recurso.estadoRecurso}}</td>
       <td>{{recurso.sesion.descripcionTema}}</td>
+      <td>{{recurso.tiporecurso.nombreTiporecurso}}</td>
       <td class="text-center">
-        <button type="button" class="btn btn-warning" (click)="openModalEdit(recurso)">Editar</button>
+        <button type="button" class="btn btn-success  text-white"  (click)="openModal()" >Nuevo</button>
       </td>
       <td class="text-center">
-        <button type="button" class="btn btn-danger" (click)="onDelete(recurso)">Eliminar</button>
+        <button type="button" class="btn btn-warning" class="btn text-white" style="background: #95a5a6" (click)="openModalEdit(recurso)">Editar</button>
+      </td>
+      <td class="text-center">
+        <button type="button" class="btn btn-danger"  class="btn text-white " style="background: #b33939"  (click)="onDelete(recurso)">Eliminar</button>
       </td>
     </tr>
     </tbody>
   </table>
-
-  <mat-card id="box1">
-    <div mode="buffer" *ngFor="let progess of progressInfo">
-      <span>{{progess.fileName}}</span>
-      <span>{{progess.value}}%</span>
-      <div id="progressbar">
-        <mat-progress-bar mode="buffer" value={{progess.value}}>
-        </mat-progress-bar>
-      </div>
-    </div>
-  </mat-card>
-
-  <div id="box2">
-    <button id="selectButton" class ="btn btn-success " mat-raised-button (click)="fileInput.click()">Seleccionar los archivos a subir</button>
-
-    <input #fileInput type="file" hidden multiple (change)="selectFiles($event)" />
-    <span *ngIf="imageName">{{imageName}}</span>
-
-    <button id="uploadButton"class ="btn btn- "   mat-raised-button *ngIf="selectedFiles" [disabled]="!selectedFiles" (click)="uploadFiles()">
-      Subir Archivos
-    </button>
-  </div>
-
-  <div id="box3">
-    <span>{{message}}</span>
-  </div>
-
-
-  <div id="box4">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Lista de Archivos</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <ul>
-          <li *ngFor="let file of fileInfos | async">
-            <a href="{{file.url}}">{{file.name}}</a>
-            <mat-icon (click)="deleteFile(file.name)">delete</mat-icon>
-          </li>
-        </ul>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
 </div>
 <!-- /.content -->
 <!-- /.content-wrapper -->
